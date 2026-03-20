@@ -9,201 +9,212 @@
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Mono:wght@400;700&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{--red:#ff4444;--yellow:#ffcc00;--blue:#44aaff;--green:#44ff88;--purple:#bb88ff;--bg:#161616;--bg2:#1a1a1a;--bg3:#202020;--border:#2a2a2a;--text:#e8e8e8;--muted:#888;--dim:#555}
+:root{
+  --red:#ff4444;--yellow:#ffcc00;--blue:#44aaff;--green:#44ff88;--purple:#bb88ff;
+  --bg:#161616;--bg2:#1c1c1c;--bg3:#222;--border:#2e2e2e;
+  --text:#d8d8d8;--text2:#b0b0b0;--text3:#888;--dim:#555;
+}
 html{scroll-behavior:smooth}
-body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;overflow-x:hidden}
-body::after{content:'';position:fixed;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 3px,rgba(255,255,255,0.005) 3px,rgba(255,255,255,0.005) 4px);pointer-events:none;z-index:9999}
+body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;overflow-x:hidden;font-size:15px;line-height:1.7}
+body::after{content:'';position:fixed;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 3px,rgba(255,255,255,0.004) 3px,rgba(255,255,255,0.004) 4px);pointer-events:none;z-index:9999}
 
 /* NAV */
-nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:0 6%;height:60px;display:flex;align-items:center;justify-content:space-between;background:rgba(22,22,22,0.95);backdrop-filter:blur(12px);border-bottom:1px solid #2a2a2a}
-.nav-logo{font-family:'Bebas Neue',sans-serif;font-size:22px;color:#fff;letter-spacing:2px;text-decoration:none}
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:0 6%;height:62px;display:flex;align-items:center;justify-content:space-between;background:rgba(22,22,22,0.96);backdrop-filter:blur(14px);border-bottom:1px solid var(--border)}
+.nav-logo{font-family:'Bebas Neue',sans-serif;font-size:23px;color:#fff;letter-spacing:2px;text-decoration:none}
 .nav-logo span{color:var(--red)}
-.nav-links{display:flex;gap:32px;list-style:none}
-.nav-links a{font-family:'Space Mono',monospace;font-size:9px;color:#666;text-decoration:none;letter-spacing:3px;transition:color 0.2s}
-.nav-links a:hover{color:#ccc}
-.nav-cta{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:3px;padding:8px 20px;background:var(--red);color:#fff;text-decoration:none;transition:all 0.2s}
-.nav-cta:hover{background:#ff2020}
+.nav-right{display:flex;align-items:center;gap:20px}
+.nav-links{display:flex;gap:28px;list-style:none}
+.nav-links a{font-family:'Space Mono',monospace;font-size:9px;color:#999;text-decoration:none;letter-spacing:3px;transition:color 0.2s}
+.nav-links a:hover{color:#eee}
+.lang-toggle{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:2px;padding:6px 14px;background:transparent;color:#999;border:1px solid #333;cursor:pointer;transition:all 0.2s}
+.lang-toggle:hover{color:#fff;border-color:#777}
+.nav-cta{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:3px;padding:8px 20px;background:var(--red);color:#fff;text-decoration:none;transition:all 0.2s;white-space:nowrap}
+.nav-cta:hover{background:#e02020}
 
 /* UTILS */
-.fade-up{opacity:0;transform:translateY(32px);transition:opacity 0.85s cubic-bezier(0.16,1,0.3,1),transform 0.85s cubic-bezier(0.16,1,0.3,1)}
+.fade-up{opacity:0;transform:translateY(28px);transition:opacity 0.85s cubic-bezier(0.16,1,0.3,1),transform 0.85s cubic-bezier(0.16,1,0.3,1)}
 .fade-up.v{opacity:1;transform:none}
 .d1{transition-delay:.1s}.d2{transition-delay:.22s}.d3{transition-delay:.34s}.d4{transition-delay:.46s}
-.tag{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:6px;color:var(--red);display:flex;align-items:center;gap:10px;margin-bottom:18px;text-transform:uppercase}
+.tag{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:6px;color:var(--red);display:flex;align-items:center;gap:10px;margin-bottom:16px;text-transform:uppercase}
 .tag::before{content:'';display:block;width:18px;height:1px;background:var(--red)}
-.h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(40px,6vw,80px);line-height:0.92;color:#fff;margin-bottom:20px}
-.lead{font-size:16px;line-height:1.85;color:var(--muted);max-width:520px}
-.lead strong{color:#bbb;font-weight:500}
+.h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(40px,6vw,80px);line-height:0.92;color:#fff;margin-bottom:18px}
+.lead{font-size:16px;line-height:1.9;color:var(--text2);max-width:520px}
+.lead strong{color:#e0e0e0;font-weight:600}
 section{padding:96px 6%}
 .btn{display:inline-block;text-decoration:none;font-family:'Space Mono',monospace;font-size:10px;letter-spacing:3px;padding:14px 36px;cursor:pointer;border:none;transition:all 0.2s}
-.btn-red{background:var(--red);color:#fff}
-.btn-red:hover{background:#ff2020;transform:translateY(-2px);box-shadow:0 10px 28px rgba(255,68,68,0.25)}
-.btn-line{background:transparent;color:#444;border:1px solid #252525}
-.btn-line:hover{color:#ccc;border-color:#555}
+.btn-red{background:var(--red);color:#fff;font-weight:700}
+.btn-red:hover{background:#e02020;transform:translateY(-2px);box-shadow:0 10px 28px rgba(255,68,68,0.3)}
+.btn-line{background:transparent;color:#aaa;border:1px solid #3a3a3a}
+.btn-line:hover{color:#fff;border-color:#888}
 
 /* HERO */
-#hero{min-height:100vh;padding:120px 6% 80px;position:relative;overflow:hidden;display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;background:radial-gradient(ellipse at 15% 60%,#2a0e00 0%,#161616 55%)}
+#hero{min-height:100vh;padding:120px 6% 80px;position:relative;overflow:hidden;display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;background:radial-gradient(ellipse at 15% 60%,#2e1000 0%,#161616 52%)}
 @media(max-width:768px){#hero{grid-template-columns:1fr}}
-.hero-eyebrow{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:7px;color:var(--red);display:flex;align-items:center;gap:10px;margin-bottom:28px;animation:riseIn 0.8s ease 0.2s both}
+.hero-eyebrow{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:7px;color:var(--red);display:flex;align-items:center;gap:10px;margin-bottom:26px;animation:riseIn 0.8s ease 0.2s both}
 .pulse{width:7px;height:7px;border-radius:50%;background:var(--red);box-shadow:0 0 8px var(--red);animation:pulse 2s infinite}
 @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.4;transform:scale(0.8)}}
 .hero-h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(56px,10vw,130px);line-height:0.87;color:#fff;margin-bottom:10px;animation:riseIn 0.9s ease 0.35s both}
-.hero-h1 .ghost{-webkit-text-stroke:1.5px #2a2a2a;-webkit-text-fill-color:transparent}
+.hero-h1 .ghost{-webkit-text-stroke:1.5px #363636;-webkit-text-fill-color:transparent}
 .hero-h1 .accent{color:var(--yellow)}
-.hero-series{font-family:'Space Mono',monospace;font-size:clamp(10px,1.4vw,13px);color:#333;letter-spacing:5px;margin-bottom:36px;animation:riseIn 0.9s ease 0.48s both}
-.hero-desc{font-size:16px;line-height:1.85;color:#888;max-width:420px;margin-bottom:44px;animation:riseIn 0.9s ease 0.58s both}
-.hero-desc strong{color:#ccc}
-.hero-pills{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:40px;animation:riseIn 0.9s ease 0.68s both}
-.pill{font-family:'Space Mono',monospace;font-size:8px;letter-spacing:2px;padding:5px 12px;border:1px solid #222;color:#444;border-radius:2px}
+.hero-series{font-family:'Space Mono',monospace;font-size:12px;color:#555;letter-spacing:5px;margin-bottom:32px;animation:riseIn 0.9s ease 0.48s both}
+.hero-desc{font-size:16px;line-height:1.9;color:var(--text2);max-width:420px;margin-bottom:40px;animation:riseIn 0.9s ease 0.58s both}
+.hero-desc strong{color:#eee;font-weight:600}
+.hero-pills{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:36px;animation:riseIn 0.9s ease 0.68s both}
+.pill{font-family:'Space Mono',monospace;font-size:8px;letter-spacing:2px;padding:5px 12px;border:1px solid #333;color:#999;border-radius:2px}
 .pill.hot{border-color:var(--red);color:var(--red)}
 .pill.yellow{border-color:var(--yellow);color:var(--yellow)}
 .hero-btns{display:flex;gap:12px;flex-wrap:wrap;animation:riseIn 0.9s ease 0.78s both}
 .hero-right{animation:riseIn 1s ease 0.5s both}
-.hero-img-main{width:100%;max-width:580px;display:block;filter:drop-shadow(0 40px 80px rgba(0,0,0,0.8))}
-.hero-img-badge{margin-top:20px;background:#111;border:1px solid #222;padding:12px 18px;font-family:'Space Mono',monospace;font-size:9px;color:#666;letter-spacing:2px;display:inline-block}
-.hero-img-badge span{color:var(--yellow);display:block;font-size:13px;margin-bottom:2px}
+.hero-img-main{width:100%;max-width:580px;display:block;filter:drop-shadow(0 40px 80px rgba(0,0,0,0.7))}
+.hero-img-badge{margin-top:18px;background:#1e1e1e;border:1px solid var(--border);padding:12px 18px;font-family:'Space Mono',monospace;font-size:9px;color:#999;letter-spacing:2px;display:inline-block}
+.hero-img-badge strong{color:var(--yellow);display:block;font-size:13px;margin-bottom:3px}
 @keyframes riseIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
-.scroll-ind{position:absolute;bottom:28px;left:50%;transform:translateX(-50%);font-family:'Space Mono',monospace;font-size:8px;color:#252525;letter-spacing:5px;text-align:center}
-.scroll-bar{width:1px;height:36px;background:linear-gradient(#333,transparent);margin:8px auto 0;animation:scrollBob 2.5s ease infinite}
+.scroll-ind{position:absolute;bottom:28px;left:50%;transform:translateX(-50%);font-family:'Space Mono',monospace;font-size:8px;color:#333;letter-spacing:5px;text-align:center}
+.scroll-bar{width:1px;height:36px;background:linear-gradient(#444,transparent);margin:8px auto 0;animation:scrollBob 2.5s ease infinite}
 @keyframes scrollBob{0%,100%{opacity:0.8}50%{opacity:0.15}}
 
 /* PRODUCTS */
 #products{background:var(--bg2)}
-.products-header{max-width:600px;margin-bottom:56px}
-.product-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:2px;background:#2a2a2a}
+.products-header{max-width:600px;margin-bottom:52px}
+.product-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:2px;background:var(--border)}
 .product-card{background:var(--bg2);padding:32px 24px;position:relative;border-top:2px solid;transition:all 0.3s;overflow:hidden}
-.product-card:hover{background:#222;transform:translateY(-4px);z-index:2;box-shadow:0 24px 48px rgba(0,0,0,0.4)}
-.product-card-img{width:100%;height:170px;object-fit:contain;margin-bottom:22px;filter:drop-shadow(0 8px 24px rgba(0,0,0,0.5));transition:transform 0.4s ease}
+.product-card:hover{background:#232323;transform:translateY(-4px);z-index:2;box-shadow:0 24px 48px rgba(0,0,0,0.4)}
+.product-card-img{width:100%;height:170px;object-fit:contain;margin-bottom:22px;filter:drop-shadow(0 8px 24px rgba(0,0,0,0.4));transition:transform 0.4s ease}
 .product-card:hover .product-card-img{transform:scale(1.04) translateY(-4px)}
 .product-status{position:absolute;top:18px;right:18px;font-family:'Space Mono',monospace;font-size:8px;letter-spacing:2px;padding:4px 10px;border-radius:2px}
-.status-live{background:rgba(68,255,136,0.1);border:1px solid #44ff8844;color:var(--green)}
-.status-soon{background:rgba(255,255,255,0.04);border:1px solid #222;color:#444}
+.status-live{background:rgba(68,255,136,0.12);border:1px solid rgba(68,255,136,0.3);color:var(--green)}
+.status-soon{background:rgba(255,255,255,0.04);border:1px solid #2e2e2e;color:#666}
 .product-series{font-family:'Space Mono',monospace;font-size:8px;letter-spacing:4px;margin-bottom:7px}
 .product-name{font-family:'Bebas Neue',sans-serif;font-size:34px;color:#fff;line-height:1;margin-bottom:10px}
-.product-desc{font-size:12px;color:#777;line-height:1.7;margin-bottom:18px}
+.product-desc{font-size:13px;color:var(--text2);line-height:1.78;margin-bottom:18px}
 .product-tags{display:flex;gap:5px;flex-wrap:wrap}
-.product-tag{font-family:'Space Mono',monospace;font-size:8px;letter-spacing:1px;padding:3px 8px;background:#222;border:1px solid #2e2e2e;color:#666}
+.product-tag{font-family:'Space Mono',monospace;font-size:8px;letter-spacing:1px;padding:3px 8px;background:#222;border:1px solid #333;color:#999}
 .coming-placeholder{height:170px;display:flex;align-items:center;justify-content:center;margin-bottom:22px}
-.coming-big{font-family:'Bebas Neue',sans-serif;font-size:52px;color:#2a2a2a;line-height:1;text-align:center}
-.coming-sub{font-family:'Space Mono',monospace;font-size:8px;color:#3a3a3a;letter-spacing:4px;margin-top:4px;text-align:center}
+.coming-big{font-family:'Bebas Neue',sans-serif;font-size:52px;color:#2e2e2e;line-height:1;text-align:center}
+.coming-sub{font-family:'Space Mono',monospace;font-size:8px;color:#444;letter-spacing:4px;margin-top:4px;text-align:center}
 
 /* HOW */
 #how{background:var(--bg)}
-.how-layout{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;margin-top:56px}
+.how-layout{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;margin-top:52px}
 @media(max-width:768px){.how-layout{grid-template-columns:1fr;gap:40px}}
-.how-steps{display:flex;flex-direction:column;gap:0}
-.how-step{display:flex;gap:20px;padding:24px 0;border-bottom:1px solid #252525;transition:all 0.3s}
+.how-step{display:flex;gap:20px;padding:24px 0;border-bottom:1px solid #272727;transition:all 0.3s}
 .how-step:first-child{padding-top:0}
 .how-step:last-child{border-bottom:none}
 .how-step:hover .how-step-num{color:var(--red)}
-.how-step-num{font-family:'Bebas Neue',sans-serif;font-size:48px;line-height:1;color:#2a2a2a;width:52px;flex-shrink:0;transition:color 0.3s}
-.how-step-title{font-family:'Space Mono',monospace;font-size:10px;color:#ddd;letter-spacing:2px;margin-bottom:8px;margin-top:6px}
-.how-step-desc{font-size:13px;color:#888;line-height:1.7}
-.how-step-note{margin-top:10px;padding:8px 12px;border-left:2px solid;font-family:'Space Mono',monospace;font-size:9px;line-height:1.8;letter-spacing:1px}
-.how-img{width:100%;border:1px solid #1a1a1a;display:block;filter:drop-shadow(0 20px 40px rgba(0,0,0,0.6))}
-.how-img-caption{margin-top:14px;padding:12px 16px;background:#0d0d0d;border:1px solid #161616;font-family:'Space Mono',monospace;font-size:9px;color:#444;letter-spacing:2px;line-height:1.8}
+.how-step-num{font-family:'Bebas Neue',sans-serif;font-size:48px;line-height:1;color:#2e2e2e;width:52px;flex-shrink:0;transition:color 0.3s}
+.how-step-title{font-family:'Space Mono',monospace;font-size:10px;color:#e8e8e8;letter-spacing:2px;margin-bottom:8px;margin-top:6px;font-weight:700}
+.how-step-desc{font-size:14px;color:var(--text2);line-height:1.78}
+.how-step-note{margin-top:10px;padding:9px 13px;border-left:2px solid;font-family:'Space Mono',monospace;font-size:9px;line-height:1.9;letter-spacing:1px}
+.how-img{width:100%;border:1px solid var(--border);display:block}
+.how-img-caption{margin-top:14px;padding:12px 16px;background:var(--bg2);border:1px solid var(--border);font-family:'Space Mono',monospace;font-size:9px;color:#888;letter-spacing:2px;line-height:1.8}
 
 /* DIY */
 #diy{background:var(--bg2)}
-.diy-layout{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start;margin-top:56px}
+.diy-layout{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start;margin-top:52px}
 @media(max-width:768px){.diy-layout{grid-template-columns:1fr}}
-.diy-img-main{width:100%;display:block;border:1px solid #1a1a1a;filter:drop-shadow(0 10px 30px rgba(0,0,0,0.5))}
-.diy-img-sub{width:100%;display:block;border:1px solid #1a1a1a;filter:drop-shadow(0 10px 30px rgba(0,0,0,0.5));margin-top:2px}
-.parts-label{font-family:'Space Mono',monospace;font-size:9px;color:#444;letter-spacing:5px;margin-bottom:18px}
-.parts-list{display:flex;flex-direction:column;gap:2px;margin-bottom:28px}
-.part-item{display:flex;align-items:center;gap:16px;padding:12px 16px;background:#1e1e1e;border:1px solid #2a2a2a;transition:all 0.25s}
-.part-item:hover{background:#252525;border-color:#363636}
+.diy-img-main{width:100%;display:block;border:1px solid var(--border)}
+.diy-img-sub{width:100%;display:block;border:1px solid var(--border);margin-top:2px}
+.parts-label{font-family:'Space Mono',monospace;font-size:9px;color:#888;letter-spacing:5px;margin-bottom:16px;text-transform:uppercase}
+.parts-list{display:flex;flex-direction:column;gap:2px;margin-bottom:24px}
+.part-item{display:flex;align-items:center;gap:16px;padding:13px 16px;background:#1e1e1e;border:1px solid var(--border);transition:all 0.25s}
+.part-item:hover{background:#252525;border-color:#3a3a3a}
 .part-num{font-family:'Bebas Neue',sans-serif;font-size:26px;color:#333;width:28px;flex-shrink:0}
-.part-name{font-family:'Space Mono',monospace;font-size:10px;color:#ccc;letter-spacing:2px}
-.part-note{font-size:11px;color:#666;margin-top:2px}
-.diff-box{padding:20px 22px;background:#1e1e1e;border:1px solid #2a2a2a;border-left:3px solid var(--yellow)}
-.diff-label{font-family:'Space Mono',monospace;font-size:9px;color:#886600;letter-spacing:4px;margin-bottom:10px}
+.part-name{font-family:'Space Mono',monospace;font-size:10px;color:#e0e0e0;letter-spacing:2px;font-weight:700}
+.part-note{font-size:12px;color:#999;margin-top:3px}
+.diff-box{padding:20px 22px;background:#1e1e1e;border:1px solid var(--border);border-left:3px solid var(--yellow)}
+.diff-label{font-family:'Space Mono',monospace;font-size:9px;color:#bb9900;letter-spacing:4px;margin-bottom:10px;text-transform:uppercase}
 .diff-track{background:#2a2a2a;height:3px;border-radius:2px;overflow:hidden;margin-bottom:8px}
 .diff-fill{height:100%;background:linear-gradient(90deg,var(--yellow),#ff8844);width:35%;border-radius:2px}
-.diff-note{font-family:'Space Mono',monospace;font-size:9px;color:#666}
+.diff-note{font-family:'Space Mono',monospace;font-size:9px;color:#999}
 
 /* EXPAND */
 #expand{background:var(--bg)}
-.expand-hero-img{width:100%;max-width:860px;display:block;margin:48px auto 0;border:1px solid #1a1a1a;filter:drop-shadow(0 20px 60px rgba(0,0,0,0.7))}
-.expand-caption{text-align:center;margin-top:18px;font-family:'Space Mono',monospace;font-size:9px;color:#2a2a2a;letter-spacing:5px}
-.expand-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:2px;background:#2a2a2a;margin-top:48px}
+.expand-hero-img{width:100%;max-width:860px;display:block;margin:44px auto 0;border:1px solid var(--border)}
+.expand-caption{text-align:center;margin-top:16px;font-family:'Space Mono',monospace;font-size:9px;color:#555;letter-spacing:5px}
+.expand-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:2px;background:var(--border);margin-top:44px}
 .expand-card{background:var(--bg);padding:28px 22px;border-top:2px solid;transition:all 0.3s}
 .expand-card:hover{background:#1e1e1e;transform:translateY(-3px)}
-.expand-card-num{font-family:'Bebas Neue',sans-serif;font-size:48px;color:#252525;line-height:1;margin-bottom:10px}
-.expand-card-title{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:2px;color:#ddd;margin-bottom:8px}
-.expand-card-desc{font-size:12px;color:#888;line-height:1.7}
-.expand-note{margin-top:40px;padding:26px 30px;background:#1e1e1e;border:1px solid #2a2a2a;border-left:3px solid var(--yellow);display:flex;align-items:flex-start;gap:18px}
-.expand-note-icon{font-size:22px;flex-shrink:0;margin-top:2px}
-.expand-note-text{font-size:14px;color:#888;line-height:1.85}
-.expand-note-text strong{color:#ddd}
+.expand-card-num{font-family:'Bebas Neue',sans-serif;font-size:48px;color:#242424;line-height:1;margin-bottom:8px}
+.expand-card-title{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:2px;color:#e8e8e8;margin-bottom:10px;font-weight:700}
+.expand-card-desc{font-size:13px;color:var(--text2);line-height:1.78}
+.expand-note{margin-top:36px;padding:24px 28px;background:#1c1c1c;border:1px solid var(--border);border-left:3px solid var(--yellow);display:flex;align-items:flex-start;gap:18px}
+.expand-note-icon{font-size:20px;flex-shrink:0;margin-top:2px}
+.expand-note-text{font-size:14px;color:var(--text2);line-height:1.85}
+.expand-note-text strong{color:#e8e8e8;font-weight:600}
 
 /* PLUGDATA */
 #plugdata{background:var(--bg2)}
-.plugdata-layout{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;margin-top:56px}
+.plugdata-layout{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;margin-top:52px}
 @media(max-width:768px){.plugdata-layout{grid-template-columns:1fr}}
-.plugdata-screen{background:#1a1a1a;border:1px solid #2a2a2a;border-radius:3px;overflow:hidden}
-.screen-bar{background:#202020;border-bottom:1px solid #2a2a2a;padding:9px 16px;display:flex;align-items:center;gap:7px}
+.plugdata-screen{background:#181818;border:1px solid var(--border);border-radius:3px;overflow:hidden}
+.screen-bar{background:#202020;border-bottom:1px solid var(--border);padding:9px 16px;display:flex;align-items:center;gap:7px}
 .sd{width:8px;height:8px;border-radius:50%}
+.screen-title{font-family:'Space Mono',monospace;font-size:8px;color:#666;margin-left:10px;letter-spacing:2px}
 .screen-body{padding:20px}
 .patch-graph{position:relative;height:210px}
-.pnode{position:absolute;border:1px solid;border-radius:3px;padding:7px 11px;font-family:'Space Mono',monospace;font-size:9px;background:rgba(30,30,30,0.9);cursor:default;transition:all 0.3s;white-space:nowrap;letter-spacing:1px}
+.pnode{position:absolute;border:1px solid;border-radius:3px;padding:7px 11px;font-family:'Space Mono',monospace;font-size:9px;background:rgba(28,28,28,0.95);cursor:default;transition:all 0.3s;white-space:nowrap;letter-spacing:1px}
 .pnode:hover{transform:scale(1.06);z-index:10}
-.pf-list{display:flex;flex-direction:column;gap:16px}
-.pf-item{display:flex;gap:14px;align-items:flex-start;padding:18px 20px;border:1px solid #2a2a2a;transition:all 0.3s}
+.pf-list{display:flex;flex-direction:column;gap:14px}
+.pf-item{display:flex;gap:14px;align-items:flex-start;padding:18px 20px;border:1px solid var(--border);transition:all 0.3s}
 .pf-item:hover{border-color:#3a3a3a;background:#1e1e1e}
 .pf-icon{width:38px;height:38px;flex-shrink:0;border:1px solid;border-radius:3px;display:flex;align-items:center;justify-content:center;font-size:14px}
-.pf-title{font-family:'Space Mono',monospace;font-size:9px;color:#ddd;letter-spacing:2px;margin-bottom:5px}
-.pf-desc{font-size:12px;color:#888;line-height:1.65}
+.pf-title{font-family:'Space Mono',monospace;font-size:9px;color:#e8e8e8;letter-spacing:2px;margin-bottom:6px;font-weight:700}
+.pf-desc{font-size:13px;color:var(--text2);line-height:1.75}
 
 /* CTA */
-#cta{padding:120px 6%;text-align:center;background:radial-gradient(ellipse at 50% 0%,#2a1400 0%,#161616 55%);position:relative;overflow:hidden}
-.cta-grid{position:absolute;inset:0;background-image:linear-gradient(#222 1px,transparent 1px),linear-gradient(90deg,#222 1px,transparent 1px);background-size:48px 48px;opacity:0.3;pointer-events:none}
+#cta{padding:120px 6%;text-align:center;background:radial-gradient(ellipse at 50% 0%,#2e1400 0%,#161616 55%);position:relative;overflow:hidden}
+.cta-grid{position:absolute;inset:0;background-image:linear-gradient(#222 1px,transparent 1px),linear-gradient(90deg,#222 1px,transparent 1px);background-size:48px 48px;opacity:0.25;pointer-events:none}
 .cta-h{font-family:'Bebas Neue',sans-serif;font-size:clamp(52px,10vw,120px);line-height:0.88;color:#fff;margin-bottom:20px;position:relative;z-index:1}
 .cta-h .yl{color:var(--yellow)}
-.cta-h .ghost{-webkit-text-stroke:1px #232323;-webkit-text-fill-color:transparent}
-.cta-sub{font-size:16px;color:#888;line-height:1.85;margin-bottom:44px;position:relative;z-index:1}
+.cta-h .ghost{-webkit-text-stroke:1px #2e2e2e;-webkit-text-fill-color:transparent}
+.cta-sub{font-size:16px;color:var(--text2);line-height:1.9;margin-bottom:44px;position:relative;z-index:1}
 .cta-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;position:relative;z-index:1}
-.cta-footer{margin-top:64px;padding-top:40px;border-top:1px solid #2a2a2a;display:flex;justify-content:center;gap:56px;flex-wrap:wrap;position:relative;z-index:1}
+.cta-footer{margin-top:60px;padding-top:40px;border-top:1px solid #2a2a2a;display:flex;justify-content:center;gap:52px;flex-wrap:wrap;position:relative;z-index:1}
 .cf-item{text-align:center}
-.cf-label{font-family:'Space Mono',monospace;font-size:8px;color:#444;letter-spacing:5px;margin-bottom:6px}
-.cf-val{font-size:13px;color:#777}
+.cf-label{font-family:'Space Mono',monospace;font-size:8px;color:#555;letter-spacing:5px;margin-bottom:6px;text-transform:uppercase}
+.cf-val{font-size:14px;color:#aaa}
 
 @media(max-width:640px){section{padding:72px 5%}nav{padding:0 5%}.nav-links{display:none}}
 </style>
 </head>
 <body>
 
+<!-- NAV -->
 <nav>
   <a href="#" class="nav-logo">osc<span>i</span>mo</a>
   <ul class="nav-links">
-    <li><a href="#products">PRODUCTS</a></li>
-    <li><a href="#how">HOW IT WORKS</a></li>
-    <li><a href="#diy">DIY</a></li>
-    <li><a href="#expand">EXPAND</a></li>
+    <li><a href="#products" data-ko="제품" data-en="Products">제품</a></li>
+    <li><a href="#how" data-ko="작동원리" data-en="How It Works">작동원리</a></li>
+    <li><a href="#diy" data-ko="조립" data-en="DIY">조립</a></li>
+    <li><a href="#expand" data-ko="확장" data-en="Expand">확장</a></li>
   </ul>
-  <a href="https://smartstore.naver.com/techtreeshop" target="_blank" class="nav-cta">구매하기 →</a>
+  <div class="nav-right">
+    <button class="lang-toggle" id="langBtn">EN</button>
+    <a href="https://smartstore.naver.com/techtreeshop" target="_blank" class="nav-cta" data-ko="구매하기 →" data-en="Buy Now →">구매하기 →</a>
+  </div>
 </nav>
 
 <!-- HERO -->
 <section id="hero">
-  <div class="hero-left">
-    <div class="hero-eyebrow"><span class="pulse"></span>PLUGDATA COMPATIBLE · DIY KIT · MODULAR SYSTEM</div>
+  <div>
+    <div class="hero-eyebrow"><span class="pulse"></span><span data-ko="PLUGDATA 호환 · DIY 키트 · 모듈러 시스템" data-en="PLUGDATA COMPATIBLE · DIY KIT · MODULAR SYSTEM">PLUGDATA 호환 · DIY 키트 · 모듈러 시스템</span></div>
     <h1 class="hero-h1">OSC<span class="accent">I</span>MO<br><span class="ghost">MODULAR</span></h1>
     <p class="hero-series">oscimo 1 series · techtreeshop</p>
-    <p class="hero-desc">소리를 <strong>직접 설계</strong>하고, 직접 조립하고,<br>같은 하드웨어로 <strong>무한히 확장</strong>하는<br>나만의 모듈러 신디사이저.</p>
+    <p class="hero-desc" data-ko="소리를 <strong>직접 설계</strong>하고, 직접 조립하고,<br>같은 하드웨어로 <strong>무한히 확장</strong>하는<br>나만의 모듈러 신디사이저." data-en="<strong>Design your sound</strong> with plugdata,<br>build it with your hands,<br>and <strong>expand infinitely</strong> with one hardware.">소리를 <strong>직접 설계</strong>하고, 직접 조립하고,<br>같은 하드웨어로 <strong>무한히 확장</strong>하는<br>나만의 모듈러 신디사이저.</p>
     <div class="hero-pills">
-      <span class="pill hot">PLUGDATA 호환</span>
-      <span class="pill yellow">DIY 조립 키트</span>
-      <span class="pill">패치 무한 확장</span>
-      <span class="pill">CV 연결 지원</span>
+      <span class="pill hot">PLUGDATA</span>
+      <span class="pill yellow" data-ko="DIY 조립 키트" data-en="DIY Kit">DIY 조립 키트</span>
+      <span class="pill" data-ko="패치 무한 확장" data-en="Infinite Patches">패치 무한 확장</span>
+      <span class="pill">CV I/O</span>
     </div>
     <div class="hero-btns">
-      <a href="https://smartstore.naver.com/techtreeshop" target="_blank" class="btn btn-red">구매하기 →</a>
-      <a href="#how" class="btn btn-line">작동 원리 보기</a>
+      <a href="https://smartstore.naver.com/techtreeshop" target="_blank" class="btn btn-red" data-ko="구매하기 →" data-en="Buy Now →">구매하기 →</a>
+      <a href="#how" class="btn btn-line" data-ko="작동 원리 보기" data-en="How It Works">작동 원리 보기</a>
     </div>
   </div>
   <div class="hero-right">
     <img src="modular_samples.png" alt="oscimo modular synthesizer" class="hero-img-main">
-    <div class="hero-img-badge"><span>oscimo 1 series</span>modular · mixer · controller · filter</div>
+    <div class="hero-img-badge"><strong>oscimo 1 series</strong><span>modular · mixer · controller · filter</span></div>
   </div>
   <div class="scroll-ind">SCROLL<div class="scroll-bar"></div></div>
 </section>
@@ -212,8 +223,8 @@ section{padding:96px 6%}
 <section id="products">
   <div class="products-header">
     <div class="tag fade-up">PRODUCTS</div>
-    <h2 class="h2 fade-up d1">oscimo 1<br>시리즈 라인업</h2>
-    <p class="lead fade-up d2">하나의 플랫폼, 네 가지 모듈.<br>plugdata 패치로 소리를 설계하고, 목적에 맞는 모듈을 선택하세요.</p>
+    <h2 class="h2 fade-up d1" data-ko="oscimo 1<br>시리즈 라인업" data-en="oscimo 1<br>Series Lineup">oscimo 1<br>시리즈 라인업</h2>
+    <p class="lead fade-up d2" data-ko="하나의 플랫폼, 네 가지 모듈.<br>plugdata 패치로 소리를 설계하고, 목적에 맞는 모듈을 선택하세요." data-en="One platform, four modules.<br>Design your sound with plugdata and choose the module that fits your needs.">하나의 플랫폼, 네 가지 모듈.<br>plugdata 패치로 소리를 설계하고, 목적에 맞는 모듈을 선택하세요.</p>
   </div>
   <div class="product-grid">
     <div class="product-card fade-up d1" style="border-top-color:#ff4444">
@@ -221,7 +232,7 @@ section{padding:96px 6%}
       <img src="modular6.png" alt="oscimo 1 modular" class="product-card-img">
       <div class="product-series" style="color:#ff4444">oscimo 1</div>
       <div class="product-name">MODULAR</div>
-      <p class="product-desc">plugdata 패치를 직접 업로드해 나만의 신디사이저를 만드는 기본 모듈. VCO, VCF, VCA, LFO 등 모든 합성 구조를 자유롭게 설계합니다.</p>
+      <p class="product-desc" data-ko="plugdata 패치를 직접 업로드해 나만의 신디사이저를 만드는 기본 모듈. VCO, VCF, VCA, LFO 등 모든 합성 구조를 자유롭게 설계합니다." data-en="Upload your own plugdata patch and build any synthesizer you imagine. Freely design VCO, VCF, VCA, LFO and any synthesis structure.">plugdata 패치를 직접 업로드해 나만의 신디사이저를 만드는 기본 모듈. VCO, VCF, VCA, LFO 등 모든 합성 구조를 자유롭게 설계합니다.</p>
       <div class="product-tags"><span class="product-tag">PLUGDATA</span><span class="product-tag">DIY KIT</span><span class="product-tag">CV I/O</span></div>
     </div>
     <div class="product-card fade-up d2" style="border-top-color:#44ff88">
@@ -229,7 +240,7 @@ section{padding:96px 6%}
       <img src="mixer1.png" alt="oscimo 1 mixer" class="product-card-img">
       <div class="product-series" style="color:#44ff88">oscimo 1</div>
       <div class="product-name">MIXER</div>
-      <p class="product-desc">여러 oscimo 모듈의 신호를 하나로 믹싱. 각 채널의 볼륨과 레벨을 실시간으로 제어합니다.</p>
+      <p class="product-desc" data-ko="여러 oscimo 모듈의 신호를 하나로 믹싱. 각 채널의 볼륨과 레벨을 실시간으로 제어합니다." data-en="Mix signals from multiple oscimo modules into one output. Control volume and level of each channel in real time.">여러 oscimo 모듈의 신호를 하나로 믹싱. 각 채널의 볼륨과 레벨을 실시간으로 제어합니다.</p>
       <div class="product-tags"><span class="product-tag">MULTI CH</span><span class="product-tag">CV CTRL</span></div>
     </div>
     <div class="product-card fade-up d3" style="border-top-color:#888">
@@ -237,15 +248,15 @@ section{padding:96px 6%}
       <img src="controller1.png" alt="oscimo 1 controller" class="product-card-img">
       <div class="product-series" style="color:#aaa">oscimo 1</div>
       <div class="product-name">CONTROLLER</div>
-      <p class="product-desc">OLED 디스플레이와 노브로 oscimo 시스템을 통합 제어. 패치 선택과 파라미터를 한 곳에서 관리합니다.</p>
+      <p class="product-desc" data-ko="OLED 디스플레이와 노브로 oscimo 시스템을 통합 제어. 패치 선택과 파라미터를 한 곳에서 관리합니다." data-en="Control the entire oscimo system with an OLED display and knobs. Manage patch selection and all parameters in one place.">OLED 디스플레이와 노브로 oscimo 시스템을 통합 제어. 패치 선택과 파라미터를 한 곳에서 관리합니다.</p>
       <div class="product-tags"><span class="product-tag">OLED</span><span class="product-tag">MIDI</span><span class="product-tag">CV OUT</span></div>
     </div>
     <div class="product-card fade-up d4" style="border-top-color:#44aaff">
-      <span class="product-status status-soon">COMING SOON</span>
-      <div class="coming-placeholder"><div><div class="coming-big">FILT</div><div class="coming-sub">준비 중</div></div></div>
+      <span class="product-status status-soon" data-ko="COMING SOON" data-en="COMING SOON">COMING SOON</span>
+      <div class="coming-placeholder"><div><div class="coming-big">FILT</div><div class="coming-sub" data-ko="준비 중" data-en="Coming Soon">준비 중</div></div></div>
       <div class="product-series" style="color:#44aaff">oscimo 1</div>
       <div class="product-name">FILTER</div>
-      <p class="product-desc">plugdata 기반 필터 모듈. 컷오프, 레조넌스, LFO 변조를 손끝으로 제어하며 음색을 조각합니다.</p>
+      <p class="product-desc" data-ko="plugdata 기반 필터 모듈. 컷오프, 레조넌스, LFO 변조를 손끝으로 제어하며 음색을 조각합니다." data-en="A plugdata-based filter module. Sculpt your tone by controlling cutoff, resonance, and LFO modulation with your hands.">plugdata 기반 필터 모듈. 컷오프, 레조넌스, LFO 변조를 손끝으로 제어하며 음색을 조각합니다.</p>
       <div class="product-tags"><span class="product-tag">PLUGDATA</span><span class="product-tag">CV MOD</span></div>
     </div>
   </div>
@@ -254,37 +265,37 @@ section{padding:96px 6%}
 <!-- HOW IT WORKS -->
 <section id="how">
   <div class="tag fade-up">HOW IT WORKS</div>
-  <h2 class="h2 fade-up d1">소리를 만드는<br>세 단계</h2>
+  <h2 class="h2 fade-up d1" data-ko="소리를 만드는<br>세 단계" data-en="Three Steps<br>to Your Sound">소리를 만드는<br>세 단계</h2>
   <div class="how-layout">
-    <div class="how-steps">
+    <div>
       <div class="how-step fade-up d1">
         <div class="how-step-num">01</div>
         <div>
-          <div class="how-step-title">PLUGDATA로 패치 설계</div>
-          <p class="how-step-desc">무료 오픈소스 툴 plugdata로 나만의 신디사이저 구조를 설계합니다. 블록을 연결하듯 VCO, VCF, LFO를 조합하세요.</p>
-          <div class="how-step-note" style="border-color:#bb88ff;color:#aa88cc;background:#1e1a24">plugdata.org — 무료 · 비주얼 패치 프로그래밍</div>
+          <div class="how-step-title" data-ko="PLUGDATA로 패치 설계" data-en="DESIGN WITH PLUGDATA">PLUGDATA로 패치 설계</div>
+          <p class="how-step-desc" data-ko="무료 오픈소스 툴 plugdata로 나만의 신디사이저 구조를 설계합니다. 블록을 연결하듯 VCO, VCF, LFO를 조합하세요." data-en="Design your own synthesizer with the free open-source tool plugdata. Connect VCO, VCF, and LFO blocks just like wiring a circuit.">무료 오픈소스 툴 plugdata로 나만의 신디사이저 구조를 설계합니다. 블록을 연결하듯 VCO, VCF, LFO를 조합하세요.</p>
+          <div class="how-step-note" style="border-color:#bb88ff;color:#cc99ff;background:#1e1a28" data-ko="plugdata.org — 무료 · 비주얼 패치 프로그래밍" data-en="plugdata.org — Free · Visual patch programming">plugdata.org — 무료 · 비주얼 패치 프로그래밍</div>
         </div>
       </div>
       <div class="how-step fade-up d2">
         <div class="how-step-num">02</div>
         <div>
-          <div class="how-step-title">oscimo에 업로드</div>
-          <p class="how-step-desc">설계한 패치를 USB로 oscimo에 업로드합니다. 소프트웨어가 하드웨어가 되는 순간입니다.</p>
-          <div class="how-step-note" style="border-color:#44aaff;color:#6699bb;background:#181e24">USB 연결 → 업로드 → 즉시 실행</div>
+          <div class="how-step-title" data-ko="oscimo에 업로드" data-en="UPLOAD TO oscimo">oscimo에 업로드</div>
+          <p class="how-step-desc" data-ko="설계한 패치를 USB로 oscimo에 업로드합니다. 소프트웨어가 하드웨어가 되는 순간입니다." data-en="Upload your patch to oscimo via USB. The moment your software becomes hardware.">설계한 패치를 USB로 oscimo에 업로드합니다. 소프트웨어가 하드웨어가 되는 순간입니다.</p>
+          <div class="how-step-note" style="border-color:#44aaff;color:#88ccff;background:#181e28" data-ko="USB 연결 → 업로드 → 즉시 실행" data-en="USB connect → Upload → Runs instantly">USB 연결 → 업로드 → 즉시 실행</div>
         </div>
       </div>
       <div class="how-step fade-up d3">
         <div class="how-step-num">03</div>
         <div>
-          <div class="how-step-title">노브로 연주 & 실험</div>
-          <p class="how-step-desc">실제 노브와 버튼, 패치 포트로 소리를 제어합니다. 화면이 아닌 손으로 소리를 만집니다.</p>
-          <div class="how-step-note" style="border-color:#44ff88;color:#66bb88;background:#181e1c">4 × 노브 · 패치 포트 CV · 실시간 제어</div>
+          <div class="how-step-title" data-ko="노브로 연주 & 실험" data-en="PLAY & EXPERIMENT">노브로 연주 & 실험</div>
+          <p class="how-step-desc" data-ko="실제 노브와 버튼, 패치 포트로 소리를 제어합니다. 화면이 아닌 손으로 소리를 만집니다." data-en="Control sound with real knobs, buttons, and patch ports. Touch the sound with your hands, not a screen.">실제 노브와 버튼, 패치 포트로 소리를 제어합니다. 화면이 아닌 손으로 소리를 만집니다.</p>
+          <div class="how-step-note" style="border-color:#44ff88;color:#88ffbb;background:#181e1c" data-ko="4 × 노브 · 패치 포트 CV · 실시간 제어" data-en="4 × Knobs · Patch port CV · Real-time control">4 × 노브 · 패치 포트 CV · 실시간 제어</div>
         </div>
       </div>
     </div>
     <div class="fade-up d2">
       <img src="modular8.png" alt="oscimo assembly" class="how-img">
-      <div class="how-img-caption">oscimo 1 modular — PCB + 3D 프린팅 케이스<br>직접 납땜하고 조립하는 DIY 키트</div>
+      <div class="how-img-caption" data-ko="oscimo 1 modular — PCB + 3D 프린팅 케이스 · 직접 납땜하고 조립하는 DIY 키트" data-en="oscimo 1 modular — PCB + 3D printed case · A DIY kit you solder and assemble yourself">oscimo 1 modular — PCB + 3D 프린팅 케이스 · 직접 납땜하고 조립하는 DIY 키트</div>
     </div>
   </div>
 </section>
@@ -292,26 +303,26 @@ section{padding:96px 6%}
 <!-- DIY -->
 <section id="diy">
   <div class="tag fade-up">DIY KIT</div>
-  <h2 class="h2 fade-up d1">직접 만드는<br>재미까지</h2>
-  <p class="lead fade-up d2">oscimo는 조립 키트로 제공됩니다.<br><strong>내 손으로 만든 신디사이저</strong>로 소리를 만드세요.</p>
+  <h2 class="h2 fade-up d1" data-ko="직접 만드는<br>재미까지" data-en="The Joy of<br>Building It Yourself">직접 만드는<br>재미까지</h2>
+  <p class="lead fade-up d2" data-ko="oscimo는 조립 키트로 제공됩니다.<br><strong>내 손으로 만든 신디사이저</strong>로 소리를 만드세요." data-en="oscimo comes as an assembly kit.<br>Make sound with a synthesizer <strong>you built yourself</strong>.">oscimo는 조립 키트로 제공됩니다.<br><strong>내 손으로 만든 신디사이저</strong>로 소리를 만드세요.</p>
   <div class="diy-layout">
     <div class="fade-up d1">
       <img src="modular1.png" alt="oscimo PCB" class="diy-img-main">
       <img src="modular5.jpg" alt="oscimo assembled" class="diy-img-sub">
     </div>
     <div class="fade-up d2">
-      <div class="parts-label">INCLUDED PARTS</div>
+      <div class="parts-label" data-ko="INCLUDED PARTS" data-en="INCLUDED PARTS">INCLUDED PARTS</div>
       <div class="parts-list">
-        <div class="part-item"><div class="part-num">01</div><div><div class="part-name">MAIN PCB</div><div class="part-note">oscimo 메인 보드</div></div></div>
-        <div class="part-item"><div class="part-num">02</div><div><div class="part-name">ROTARY KNOBS × 4</div><div class="part-note">로터리 노브 — 소리를 손으로 제어</div></div></div>
-        <div class="part-item"><div class="part-num">03</div><div><div class="part-name">PATCH JACKS</div><div class="part-note">3.5mm CV 입출력 패치 포트</div></div></div>
-        <div class="part-item"><div class="part-num">04</div><div><div class="part-name">PUSH BUTTONS</div><div class="part-note">게이트 · 트리거 제어 버튼</div></div></div>
-        <div class="part-item"><div class="part-num">05</div><div><div class="part-name">3D 프린팅 케이스</div><div class="part-note">별도 판매 · techtreeshop</div></div></div>
+        <div class="part-item"><div class="part-num">01</div><div><div class="part-name">MAIN PCB</div><div class="part-note" data-ko="oscimo 메인 보드" data-en="oscimo main board">oscimo 메인 보드</div></div></div>
+        <div class="part-item"><div class="part-num">02</div><div><div class="part-name">ROTARY KNOBS × 4</div><div class="part-note" data-ko="소리를 손으로 제어하는 로터리 노브" data-en="Rotary knobs to control sound by hand">소리를 손으로 제어하는 로터리 노브</div></div></div>
+        <div class="part-item"><div class="part-num">03</div><div><div class="part-name">PATCH JACKS</div><div class="part-note" data-ko="3.5mm CV 입출력 패치 포트" data-en="3.5mm CV input/output patch ports">3.5mm CV 입출력 패치 포트</div></div></div>
+        <div class="part-item"><div class="part-num">04</div><div><div class="part-name">PUSH BUTTONS</div><div class="part-note" data-ko="게이트 · 트리거 제어 버튼" data-en="Gate and trigger control buttons">게이트 · 트리거 제어 버튼</div></div></div>
+        <div class="part-item"><div class="part-num">05</div><div><div class="part-name">3D PRINTED CASE</div><div class="part-note" data-ko="별도 판매 · techtreeshop" data-en="Sold separately · techtreeshop">별도 판매 · techtreeshop</div></div></div>
       </div>
       <div class="diff-box">
-        <div class="diff-label">DIFFICULTY LEVEL</div>
+        <div class="diff-label" data-ko="DIFFICULTY LEVEL" data-en="DIFFICULTY LEVEL">DIFFICULTY LEVEL</div>
         <div class="diff-track"><div class="diff-fill"></div></div>
-        <div class="diff-note">기초 납땜 가능 수준 · 초중급자 권장</div>
+        <div class="diff-note" data-ko="기초 납땜 가능 수준 · 초중급자 권장" data-en="Basic soldering required · Beginner-friendly">기초 납땜 가능 수준 · 초중급자 권장</div>
       </div>
     </div>
   </div>
@@ -320,41 +331,41 @@ section{padding:96px 6%}
 <!-- EXPAND -->
 <section id="expand">
   <div class="tag fade-up">INFINITE EXPANSION</div>
-  <h2 class="h2 fade-up d1">하나의 하드웨어,<br>무한한 악기</h2>
-  <p class="lead fade-up d2">패치만 바꾸면 완전히 다른 악기가 됩니다.<br>oscimo를 여러 개 연결하면 <strong>진짜 모듈러 시스템</strong>이 완성됩니다.</p>
+  <h2 class="h2 fade-up d1" data-ko="하나의 하드웨어,<br>무한한 악기" data-en="One Hardware,<br>Infinite Instruments">하나의 하드웨어,<br>무한한 악기</h2>
+  <p class="lead fade-up d2" data-ko="패치만 바꾸면 완전히 다른 악기가 됩니다.<br>oscimo를 여러 개 연결하면 <strong>진짜 모듈러 시스템</strong>이 완성됩니다." data-en="Swap the patch and it becomes a completely different instrument.<br>Connect multiple oscimos to build a <strong>real modular system</strong>.">패치만 바꾸면 완전히 다른 악기가 됩니다.<br>oscimo를 여러 개 연결하면 <strong>진짜 모듈러 시스템</strong>이 완성됩니다.</p>
   <img src="modular_samples.png" alt="oscimo modular system" class="expand-hero-img fade-up d2">
-  <p class="expand-caption fade-up d3">oscimo 1 modular × 3 — CV 패치 케이블로 연결한 모듈러 시스템</p>
+  <p class="expand-caption fade-up d3" data-ko="oscimo 1 modular × 3 — CV 패치 케이블로 연결한 모듈러 시스템" data-en="oscimo 1 modular × 3 — modular system connected via CV patch cables">oscimo 1 modular × 3 — CV 패치 케이블로 연결한 모듈러 시스템</p>
   <div class="expand-cards fade-up d3">
-    <div class="expand-card" style="border-top-color:#ff4444"><div class="expand-card-num">01</div><div class="expand-card-title" style="color:#ff4444">패치 교체</div><p class="expand-card-desc">plugdata에서 새 패치를 설계하고 업로드하면 즉시 다른 악기가 됩니다. 서브트랙티브, FM, 드럼 머신 무엇이든.</p></div>
-    <div class="expand-card" style="border-top-color:#ffcc00"><div class="expand-card-num">02</div><div class="expand-card-title" style="color:#ffcc00">CV 연결</div><p class="expand-card-desc">패치 포트로 oscimo끼리 CV 신호를 주고받습니다. 하나는 LFO, 하나는 필터, 하나는 시퀀서로.</p></div>
-    <div class="expand-card" style="border-top-color:#44aaff"><div class="expand-card-num">03</div><div class="expand-card-title" style="color:#44aaff">시스템 확장</div><p class="expand-card-desc">mixer, controller, filter 모듈이 추가되면 완전한 oscimo 1 시스템이 구축됩니다.</p></div>
-    <div class="expand-card" style="border-top-color:#44ff88"><div class="expand-card-num">04</div><div class="expand-card-title" style="color:#44ff88">커뮤니티 패치</div><p class="expand-card-desc">다른 사용자가 만든 패치를 그대로 업로드해서 사용할 수 있습니다. 공유하고 발전시키는 오픈 생태계.</p></div>
+    <div class="expand-card" style="border-top-color:#ff4444"><div class="expand-card-num">01</div><div class="expand-card-title" style="color:#ff4444" data-ko="패치 교체" data-en="SWAP PATCHES">패치 교체</div><p class="expand-card-desc" data-ko="plugdata에서 새 패치를 설계하고 업로드하면 즉시 다른 악기가 됩니다. 서브트랙티브, FM, 드럼 머신 무엇이든." data-en="Design a new patch in plugdata, upload it, and instantly become a different instrument. Subtractive, FM, drum machine — anything.">plugdata에서 새 패치를 설계하고 업로드하면 즉시 다른 악기가 됩니다.</p></div>
+    <div class="expand-card" style="border-top-color:#ffcc00"><div class="expand-card-num">02</div><div class="expand-card-title" style="color:#ffcc00" data-ko="CV 연결" data-en="CV CONNECT">CV 연결</div><p class="expand-card-desc" data-ko="패치 포트로 oscimo끼리 CV 신호를 주고받습니다. 하나는 LFO, 하나는 필터, 하나는 시퀀서로." data-en="Exchange CV signals between oscimos via patch ports. One as LFO, one as filter, one as sequencer.">패치 포트로 oscimo끼리 CV 신호를 주고받습니다.</p></div>
+    <div class="expand-card" style="border-top-color:#44aaff"><div class="expand-card-num">03</div><div class="expand-card-title" style="color:#44aaff" data-ko="시스템 확장" data-en="SYSTEM EXPAND">시스템 확장</div><p class="expand-card-desc" data-ko="mixer, controller, filter 모듈이 추가되면 완전한 oscimo 1 시스템이 구축됩니다." data-en="Add mixer, controller, and filter modules to complete the full oscimo 1 system.">mixer, controller, filter 모듈이 추가되면 완전한 시스템이 됩니다.</p></div>
+    <div class="expand-card" style="border-top-color:#44ff88"><div class="expand-card-num">04</div><div class="expand-card-title" style="color:#44ff88" data-ko="커뮤니티 패치" data-en="COMMUNITY PATCHES">커뮤니티 패치</div><p class="expand-card-desc" data-ko="다른 사용자가 만든 패치를 그대로 업로드해서 사용할 수 있습니다. 공유하고 발전시키는 오픈 생태계." data-en="Upload and use patches made by other users. An open ecosystem built to share and evolve.">다른 사용자가 만든 패치를 업로드해서 사용할 수 있습니다.</p></div>
   </div>
   <div class="expand-note fade-up d4">
     <div class="expand-note-icon">🔌</div>
-    <div class="expand-note-text"><strong>oscimo를 여러 개 연결하면 진짜 모듈러 시스템이 됩니다.</strong><br>CV 신호를 주고받으면 각각의 oscimo가 하나의 모듈이 됩니다. 5~10만원부터 시작하는 모듈러 신디사이저.</div>
+    <div class="expand-note-text" data-ko="<strong>oscimo를 여러 개 연결하면 진짜 모듈러 시스템이 됩니다.</strong><br>CV 신호를 주고받으면 각각의 oscimo가 하나의 모듈이 됩니다. 소규모 예산으로 시작하는 모듈러 신디사이저." data-en="<strong>Connect multiple oscimos and you have a real modular system.</strong><br>Each oscimo becomes a module exchanging CV signals — a fully expandable modular synthesizer starting from one affordable kit."><strong>oscimo를 여러 개 연결하면 진짜 모듈러 시스템이 됩니다.</strong><br>CV 신호를 주고받으면 각각의 oscimo가 하나의 모듈이 됩니다.</div>
   </div>
 </section>
 
 <!-- PLUGDATA -->
 <section id="plugdata">
   <div class="tag fade-up">PLUGDATA</div>
-  <h2 class="h2 fade-up d1">소프트웨어로<br>소리를 설계한다</h2>
-  <p class="lead fade-up d2">plugdata(Pure Data)로 신디사이저 구조를 설계하고,<br><strong>그대로 oscimo에서 실행</strong>합니다.</p>
+  <h2 class="h2 fade-up d1" data-ko="소프트웨어로<br>소리를 설계한다" data-en="Design Your Sound<br>in Software">소프트웨어로<br>소리를 설계한다</h2>
+  <p class="lead fade-up d2" data-ko="plugdata(Pure Data)로 신디사이저 구조를 설계하고,<br><strong>그대로 oscimo에서 실행</strong>합니다." data-en="Design your synthesizer in plugdata (Pure Data)<br>and <strong>run it directly on oscimo</strong>.">plugdata(Pure Data)로 신디사이저 구조를 설계하고,<br><strong>그대로 oscimo에서 실행</strong>합니다.</p>
   <div class="plugdata-layout">
     <div class="plugdata-screen fade-up d1">
       <div class="screen-bar">
         <div class="sd" style="background:#ff5555"></div>
         <div class="sd" style="background:#ffcc00"></div>
         <div class="sd" style="background:#44cc66"></div>
-        <span style="font-family:'Space Mono',monospace;font-size:8px;color:#333;margin-left:10px;letter-spacing:2px">oscimo-patch.pd — plugdata</span>
+        <span class="screen-title">oscimo-patch.pd — plugdata</span>
       </div>
       <div class="screen-body"><div class="patch-graph" id="patchGraph"></div></div>
     </div>
     <div class="pf-list fade-up d2">
-      <div class="pf-item"><div class="pf-icon" style="border-color:#bb88ff;color:#bb88ff;background:rgba(187,136,255,0.06)">🔗</div><div><div class="pf-title">비주얼 패치 프로그래밍</div><p class="pf-desc">코딩 없이 블록을 연결해 신디사이저 회로를 설계합니다. VCO, VCF, VCA, LFO, ADSR — 원하는 구조를 자유롭게.</p></div></div>
-      <div class="pf-item"><div class="pf-icon" style="border-color:#44aaff;color:#44aaff;background:rgba(68,170,255,0.06)">📤</div><div><div class="pf-title">USB로 즉시 업로드</div><p class="pf-desc">설계한 패치를 oscimo에 업로드하면 즉시 실행됩니다. 패치를 바꿀 때마다 완전히 다른 신디사이저가 됩니다.</p></div></div>
-      <div class="pf-item"><div class="pf-icon" style="border-color:#44ff88;color:#44ff88;background:rgba(68,255,136,0.06)">∞</div><div><div class="pf-title">무한한 사운드 가능성</div><p class="pf-desc">드럼 머신, FM 신디사이저, 앰비언트 이펙터, 리듬 시퀀서… 하나의 oscimo가 무수히 다른 악기가 됩니다.</p></div></div>
+      <div class="pf-item"><div class="pf-icon" style="border-color:#bb88ff;color:#bb88ff;background:rgba(187,136,255,0.07)">🔗</div><div><div class="pf-title" data-ko="비주얼 패치 프로그래밍" data-en="VISUAL PATCH PROGRAMMING">비주얼 패치 프로그래밍</div><p class="pf-desc" data-ko="코딩 없이 블록을 연결해 신디사이저 회로를 설계합니다. VCO, VCF, VCA, LFO, ADSR — 원하는 구조를 자유롭게." data-en="Design synthesizer circuits by connecting blocks — no coding needed. VCO, VCF, VCA, LFO, ADSR — build any structure you want.">코딩 없이 블록을 연결해 신디사이저 회로를 설계합니다.</p></div></div>
+      <div class="pf-item"><div class="pf-icon" style="border-color:#44aaff;color:#44aaff;background:rgba(68,170,255,0.07)">📤</div><div><div class="pf-title" data-ko="USB로 즉시 업로드" data-en="INSTANT USB UPLOAD">USB로 즉시 업로드</div><p class="pf-desc" data-ko="설계한 패치를 oscimo에 업로드하면 즉시 실행됩니다. 패치를 바꿀 때마다 완전히 다른 신디사이저가 됩니다." data-en="Upload your patch and it runs instantly. Every new patch turns oscimo into a completely different synthesizer.">설계한 패치를 oscimo에 업로드하면 즉시 실행됩니다.</p></div></div>
+      <div class="pf-item"><div class="pf-icon" style="border-color:#44ff88;color:#44ff88;background:rgba(68,255,136,0.07)">∞</div><div><div class="pf-title" data-ko="무한한 사운드 가능성" data-en="INFINITE SOUND POSSIBILITIES">무한한 사운드 가능성</div><p class="pf-desc" data-ko="드럼 머신, FM 신디사이저, 앰비언트 이펙터, 리듬 시퀀서… 하나의 oscimo가 무수히 다른 악기가 됩니다." data-en="Drum machine, FM synthesizer, ambient effects, rhythm sequencer… one oscimo becomes countless different instruments.">드럼 머신, FM 신디사이저, 이펙터, 시퀀서… 하나의 oscimo가 무수히 다른 악기가 됩니다.</p></div></div>
     </div>
   </div>
 </section>
@@ -362,44 +373,72 @@ section{padding:96px 6%}
 <!-- CTA -->
 <section id="cta">
   <div class="cta-grid"></div>
-  <div class="tag fade-up" style="justify-content:center;margin-bottom:24px">oscimo · techtreeshop</div>
-  <h2 class="cta-h fade-up d1">만들고<br><span class="yl">설계하고</span><br><span class="ghost">확장하라</span></h2>
-  <p class="cta-sub fade-up d2">plugdata로 소리를 설계하고, 납땜으로 하드웨어를 만들고,<br>패치를 바꿔가며 무한히 확장하는 당신만의 모듈러 신디사이저.</p>
+  <div class="tag fade-up" style="justify-content:center;margin-bottom:22px">oscimo · techtreeshop</div>
+  <h2 class="cta-h fade-up d1" data-ko="만들고<br><span class='yl'>설계하고</span><br><span class='ghost'>확장하라</span>" data-en="Build it.<br><span class='yl'>Design it.</span><br><span class='ghost'>Expand it.</span>">만들고<br><span class="yl">설계하고</span><br><span class="ghost">확장하라</span></h2>
+  <p class="cta-sub fade-up d2" data-ko="plugdata로 소리를 설계하고, 납땜으로 하드웨어를 만들고,<br>패치를 바꿔가며 무한히 확장하는 당신만의 모듈러 신디사이저." data-en="Design your sound in plugdata, build the hardware with a soldering iron,<br>and expand infinitely by swapping patches — your own modular synthesizer.">plugdata로 소리를 설계하고, 납땜으로 하드웨어를 만들고,<br>패치를 바꿔가며 무한히 확장하는 당신만의 모듈러 신디사이저.</p>
   <div class="cta-btns fade-up d3">
-    <a href="https://smartstore.naver.com/techtreeshop" target="_blank" class="btn btn-red">네이버 스마트스토어 구매하기 →</a>
+    <a href="https://smartstore.naver.com/techtreeshop" target="_blank" class="btn btn-red" data-ko="네이버 스마트스토어 구매하기 →" data-en="Buy on Naver Smartstore →">네이버 스마트스토어 구매하기 →</a>
   </div>
   <div class="cta-footer fade-up d4">
     <div class="cf-item"><div class="cf-label">COMPATIBLE</div><div class="cf-val">plugdata (Pure Data)</div></div>
-    <div class="cf-item"><div class="cf-label">ASSEMBLY</div><div class="cf-val">DIY 납땜 키트</div></div>
-    <div class="cf-item"><div class="cf-label">EXPANSION</div><div class="cf-val">CV 패치 케이블 연결</div></div>
+    <div class="cf-item"><div class="cf-label">ASSEMBLY</div><div class="cf-val" data-ko="DIY 납땜 키트" data-en="DIY Soldering Kit">DIY 납땜 키트</div></div>
+    <div class="cf-item"><div class="cf-label">EXPANSION</div><div class="cf-val">CV Patch Cable</div></div>
     <div class="cf-item"><div class="cf-label">STORE</div><div class="cf-val">naver · techtreeshop</div></div>
   </div>
 </section>
 
 <script>
+/* INTERSECTION OBSERVER */
 const io=new IntersectionObserver(e=>e.forEach(el=>{if(el.isIntersecting)el.target.classList.add('v')}),{threshold:0.1});
 document.querySelectorAll('.fade-up').forEach(el=>io.observe(el));
 
+/* PATCH GRAPH */
 const graph=document.getElementById('patchGraph');
 if(graph){
-  const nodes=[{label:'osc~',x:14,y:18,color:'#ff4444'},{label:'lfo~',x:14,y:96,color:'#bb88ff'},{label:'vcf~',x:136,y:52,color:'#ffcc00'},{label:'adsr~',x:236,y:96,color:'#44ff88'},{label:'*~',x:258,y:36,color:'#44aaff'},{label:'dac~',x:364,y:52,color:'#666'}];
-  const conns=[{f:0,t:2},{f:1,t:2},{f:2,t:4},{f:3,t:4},{f:4,t:5}];
-  conns.forEach(c=>{
+  const nodes=[
+    {label:'osc~',x:14,y:18,color:'#ff4444'},
+    {label:'lfo~',x:14,y:96,color:'#bb88ff'},
+    {label:'vcf~',x:136,y:52,color:'#ffcc00'},
+    {label:'adsr~',x:236,y:96,color:'#44ff88'},
+    {label:'*~',x:258,y:36,color:'#44aaff'},
+    {label:'dac~',x:364,y:52,color:'#888'}
+  ];
+  [{f:0,t:2},{f:1,t:2},{f:2,t:4},{f:3,t:4},{f:4,t:5}].forEach(c=>{
     const fn=nodes[c.f],tn=nodes[c.t];
     const x1=fn.x+38,y1=fn.y+13,x2=tn.x,y2=tn.y+13;
     const dx=x2-x1,dy=y2-y1,len=Math.sqrt(dx*dx+dy*dy),angle=Math.atan2(dy,dx)*180/Math.PI;
-    const line=document.createElement('div');
-    line.style.cssText=`position:absolute;left:${x1}px;top:${y1}px;width:${len}px;height:1.5px;background:linear-gradient(90deg,${fn.color}77,${tn.color}77);transform-origin:left center;transform:rotate(${angle}deg);pointer-events:none;`;
-    graph.appendChild(line);
+    const l=document.createElement('div');
+    l.style.cssText=`position:absolute;left:${x1}px;top:${y1}px;width:${len}px;height:1.5px;background:linear-gradient(90deg,${fn.color}88,${tn.color}88);transform-origin:left center;transform:rotate(${angle}deg);pointer-events:none;`;
+    graph.appendChild(l);
   });
   nodes.forEach(n=>{
     const el=document.createElement('div');
     el.className='pnode';
-    el.style.cssText=`left:${n.x}px;top:${n.y}px;border-color:${n.color}55;color:${n.color};`;
+    el.style.cssText=`left:${n.x}px;top:${n.y}px;border-color:${n.color}66;color:${n.color};`;
     el.textContent=n.label;
     graph.appendChild(el);
   });
 }
+
+/* LANGUAGE TOGGLE */
+let lang='ko';
+const btn=document.getElementById('langBtn');
+
+function applyLang(l){
+  lang=l;
+  btn.textContent=l==='ko'?'EN':'KO';
+  document.documentElement.lang=l==='ko'?'ko':'en';
+  document.querySelectorAll('[data-'+l+']').forEach(el=>{
+    const val=el.getAttribute('data-'+l);
+    if(!val)return;
+    /* Use innerHTML for elements that may contain tags */
+    const tags=['P','DIV','H1','H2','H3','SPAN','A','BUTTON'];
+    if(tags.includes(el.tagName)){el.innerHTML=val;}
+    else{el.textContent=val;}
+  });
+}
+
+btn.addEventListener('click',()=>applyLang(lang==='ko'?'en':'ko'));
 </script>
 </body>
 </html>
