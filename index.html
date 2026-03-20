@@ -79,9 +79,9 @@ section{padding:96px 6%}
 .product-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:2px;background:var(--border)}
 .product-card{background:var(--bg2);padding:32px 24px;position:relative;border-top:2px solid;transition:all 0.3s;overflow:hidden}
 .product-card:hover{background:#232323;transform:translateY(-4px);z-index:2;box-shadow:0 24px 48px rgba(0,0,0,0.4)}
-.product-card-img{width:100%;height:170px;object-fit:contain;margin-bottom:22px;filter:drop-shadow(0 8px 24px rgba(0,0,0,0.4));transition:transform 0.4s ease}
+.product-card-img{width:100%;height:170px;object-fit:contain;margin-bottom:22px;filter:drop-shadow(0 8px 24px rgba(0,0,0,0.4));transition:transform 0.4s ease;margin-top:36px}
 .product-card:hover .product-card-img{transform:scale(1.04) translateY(-4px)}
-.product-status{position:absolute;top:18px;right:18px;font-family:'Space Mono',monospace;font-size:8px;letter-spacing:2px;padding:4px 10px;border-radius:2px}
+.product-status{position:absolute;top:18px;right:18px;font-family:'Space Mono',monospace;font-size:8px;letter-spacing:2px;padding:4px 10px;border-radius:2px;z-index:2}
 .status-live{background:rgba(68,255,136,0.12);border:1px solid rgba(68,255,136,0.3);color:var(--green)}
 .status-soon{background:rgba(255,255,255,0.04);border:1px solid #2e2e2e;color:#666}
 .product-series{font-family:'Space Mono',monospace;font-size:8px;letter-spacing:4px;margin-bottom:7px}
@@ -114,6 +114,12 @@ section{padding:96px 6%}
 @media(max-width:768px){.diy-layout{grid-template-columns:1fr}}
 .diy-img-main{width:100%;display:block;border:1px solid var(--border)}
 .diy-img-sub{width:100%;display:block;border:1px solid var(--border);margin-top:2px}
+.diy-video-wrap{margin-top:48px;padding-top:40px;border-top:1px solid var(--border)}
+.diy-video-label{font-family:'Space Mono',monospace;font-size:9px;color:var(--red);letter-spacing:5px;margin-bottom:14px;display:flex;align-items:center;gap:10px}
+.diy-video-label::before{content:'';display:block;width:18px;height:1px;background:var(--red)}
+.diy-video-title{font-family:'Bebas Neue',sans-serif;font-size:26px;color:#fff;margin-bottom:18px}
+.video-container{position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border:1px solid var(--border)}
+.video-container iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:0}
 .parts-label{font-family:'Space Mono',monospace;font-size:9px;color:#888;letter-spacing:5px;margin-bottom:16px;text-transform:uppercase}
 .parts-list{display:flex;flex-direction:column;gap:2px;margin-bottom:24px}
 .part-item{display:flex;align-items:center;gap:16px;padding:13px 16px;background:#1e1e1e;border:1px solid var(--border);transition:all 0.25s}
@@ -324,6 +330,20 @@ section{padding:96px 6%}
         <div class="diff-track"><div class="diff-fill"></div></div>
         <div class="diff-note" data-ko="기초 납땜 가능 수준 · 초중급자 권장" data-en="Basic soldering required · Beginner-friendly">기초 납땜 가능 수준 · 초중급자 권장</div>
       </div>
+    </div>
+  </div>
+
+  <!-- 조립 영상 -->
+  <div class="diy-video-wrap fade-up d3">
+    <div class="diy-video-label" data-ko="조립 영상" data-en="ASSEMBLY VIDEO">조립 영상</div>
+    <div class="diy-video-title" data-ko="oscimo 조립하기" data-en="Building oscimo">oscimo 조립하기</div>
+    <div class="video-container">
+      <iframe
+        src="https://www.youtube.com/embed/rFcX7s3LaBo"
+        title="oscimo assembly"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen>
+      </iframe>
     </div>
   </div>
 </section>
