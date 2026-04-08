@@ -4,7 +4,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>oscimo — modular synthesizer</title>
-<!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-LF79QC7VRD"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -244,23 +243,6 @@ nav{
 }
 .prod-card:hover .prod-img{transform:translateY(-4px) scale(1.02)}
 
-.prod-placeholder{
-  width:100%;height:160px;display:flex;
-  align-items:center;justify-content:center;
-}
-.prod-placeholder-text{
-  font-family:'DM Mono',monospace;font-size:28px;
-  font-weight:300;letter-spacing:-1px;color:var(--border2);
-}
-
-.prod-badge{
-  position:absolute;top:14px;left:14px;
-  font-family:'DM Mono',monospace;font-size:9px;
-  letter-spacing:1.5px;padding:3px 8px;
-}
-.badge-live{background:rgba(26,140,72,0.1);color:var(--green);border:1px solid rgba(26,140,72,0.25)}
-.badge-soon{background:transparent;color:var(--text3);border:1px solid var(--border)}
-
 .prod-info{padding:20px 20px 24px}
 .prod-series{
   font-family:'DM Mono',monospace;font-size:9px;
@@ -310,32 +292,12 @@ nav{
   letter-spacing:-0.3px;margin-bottom:6px;
 }
 .step-desc{font-size:13px;color:var(--text2);line-height:1.7}
-.step-note{
-  margin-top:10px;padding:8px 12px;
-  border-left:2px solid;
-  font-family:'DM Mono',monospace;font-size:9px;
-  color:var(--text3);letter-spacing:0.5px;line-height:1.8;
-}
 
 .how-visual{}
 .how-img{width:100%;display:block;border:1px solid var(--border)}
 .how-cap{
   margin-top:12px;font-family:'DM Mono',monospace;
   font-size:9px;color:var(--text3);letter-spacing:1px;line-height:1.7;
-}
-
-/* ── BIG PHOTO ── */
-.bigphoto{
-  width:100%;display:block;
-  border-top:1px solid var(--border);
-  border-bottom:1px solid var(--border);
-  background:var(--bg3);
-}
-.bigphoto img{
-  width:100%;max-height:640px;
-  object-fit:cover;object-position:center;
-  display:block;
-  filter:drop-shadow(0 0 0 transparent);
 }
 
 /* ── DIY ── */
@@ -387,99 +349,50 @@ nav{
 .video-box{position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border:1px solid var(--border)}
 .video-box iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:0}
 
-/* ── EXPAND ── */
-#expand{background:var(--bg2);padding:100px 5%}
-.expand-img{
-  width:100%;max-width:900px;display:block;
-  margin:48px auto 0;border:1px solid var(--border);
-}
-.expand-cap{
-  text-align:center;margin-top:12px;
-  font-family:'DM Mono',monospace;font-size:9px;
-  color:var(--text3);letter-spacing:2px;
-}
-.expand-grid{
-  display:grid;grid-template-columns:repeat(4,1fr);
-  gap:1px;background:var(--border);margin-top:48px;
-}
-@media(max-width:768px){.expand-grid{grid-template-columns:repeat(2,1fr)}}
-
-.expand-card{
-  background:var(--bg2);padding:28px 22px;
-  border-top:2px solid;transition:background 0.2s;
-}
-.expand-card:hover{background:var(--bg3)}
-.expand-n{
-  font-family:'DM Mono',monospace;font-size:32px;
-  font-weight:300;color:var(--border);line-height:1;
-  margin-bottom:10px;letter-spacing:-1px;
-}
-.expand-t{
-  font-family:'DM Sans',sans-serif;font-size:13px;
-  font-weight:500;color:var(--text);
-  letter-spacing:-0.2px;margin-bottom:8px;
-}
-.expand-d{font-size:12px;color:var(--text2);line-height:1.7}
-
-.expand-note{
-  margin-top:36px;padding:24px 28px;
-  background:var(--bg);border:1px solid var(--border);
-  border-left:2px solid var(--yellow);
-  display:flex;align-items:flex-start;gap:16px;
-}
-.expand-note-icon{font-size:18px;flex-shrink:0;margin-top:2px}
-.expand-note-text{font-size:13px;color:var(--text2);line-height:1.8}
-.expand-note-text strong{color:var(--text);font-weight:500}
-
-/* ── PLUGDATA ── */
+/* ── PLUGDATA SECTION UPDATED ── */
 #plugdata{background:var(--bg);padding:100px 5%}
 .pd-layout{
-  display:grid;grid-template-columns:1fr 1fr;
-  gap:60px;align-items:center;margin-top:52px;
+  display:grid;grid-template-columns:1.2fr 0.8fr; /* 이미지 영역을 조금 더 넓게 조정 */
+  gap:48px;align-items:center;margin-top:52px;
 }
-@media(max-width:768px){.pd-layout{grid-template-columns:1fr}}
+@media(max-width:960px){.pd-layout{grid-template-columns:1fr;gap:40px}}
 
 .pd-screen{
   background:#1a1a1a;border:1px solid #2a2a2a;
-  border-radius:2px;overflow:hidden;
+  border-radius:4px;overflow:hidden;
+  filter:drop-shadow(0 20px 40px rgba(0,0,0,0.15));
 }
 .pd-bar{
   background:#222;border-bottom:1px solid #2a2a2a;
-  padding:8px 14px;display:flex;align-items:center;gap:6px;
+  padding:10px 16px;display:flex;align-items:center;gap:6px;
 }
-.pd-dot{width:8px;height:8px;border-radius:50%}
+.pd-dot{width:10px;height:10px;border-radius:50%}
 .pd-bar-title{
-  font-family:'DM Mono',monospace;font-size:8px;
-  color:#444;margin-left:8px;letter-spacing:1px;
+  font-family:'DM Mono',monospace;font-size:10px;
+  color:#666;margin-left:8px;letter-spacing:1px;
 }
-.pd-body{padding:20px}
-.pd-graph{position:relative;height:200px}
-.pd-node{
-  position:absolute;border:1px solid;border-radius:2px;
-  padding:6px 10px;font-family:'DM Mono',monospace;
-  font-size:9px;background:rgba(26,26,26,0.95);
-  white-space:nowrap;letter-spacing:0.5px;
-  transition:transform 0.2s;cursor:default;
+.pd-image{
+  width:100%;display:block;
+  height:auto;
 }
-.pd-node:hover{transform:scale(1.06);z-index:10}
 
-.pd-features{display:flex;flex-direction:column;gap:1px;background:var(--border)}
+.pd-features{display:flex;flex-direction:column;gap:12px;} /* 간격 조정 */
 .pd-feat{
-  display:flex;gap:14px;align-items:flex-start;
-  padding:20px;background:var(--bg);transition:background 0.2s;
+  display:flex;gap:16px;align-items:flex-start;
+  padding:24px;background:var(--bg2); /* 배경을 살짝 넣어 가독성 향상 */
+  transition:transform 0.2s;
 }
-.pd-feat:hover{background:var(--bg2)}
+.pd-feat:hover{transform:translateX(6px)}
 .pd-feat-icon{
-  width:36px;height:36px;flex-shrink:0;border:1px solid var(--border);
-  display:flex;align-items:center;justify-content:center;font-size:14px;
+  width:40px;height:40px;flex-shrink:0;background:var(--bg);
+  border:1px solid var(--border);
+  display:flex;align-items:center;justify-content:center;font-size:16px;
 }
 .pd-feat-title{
-  font-family:'DM Sans',monospace;font-size:12px;
-  font-weight:500;color:var(--text);margin-bottom:5px;letter-spacing:-0.2px;
+  font-family:'DM Sans',monospace;font-size:14px;
+  font-weight:500;color:var(--text);margin-bottom:6px;letter-spacing:-0.2px;
 }
-.pd-feat-desc{font-size:12px;color:var(--text2);line-height:1.65}
-
-.pd-video{margin-top:48px;padding-top:40px;border-top:1px solid var(--border)}
+.pd-feat-desc{font-size:13px;color:var(--text2);line-height:1.6}
 
 /* ── CTA ── */
 #cta{
@@ -531,7 +444,6 @@ nav{
   display:flex;justify-content:center;gap:52px;flex-wrap:wrap;
   position:relative;z-index:1;
 }
-.cta-fi{}
 .cta-fi-l{
   font-family:'DM Mono',monospace;font-size:8px;
   color:rgba(255,255,255,0.2);letter-spacing:3px;
@@ -544,7 +456,6 @@ nav{
 </head>
 <body>
 
-<!-- NAV -->
 <nav>
   <a href="#" class="nav-logo">osc<em>i</em>mo</a>
   <div class="nav-c">
@@ -561,7 +472,6 @@ nav{
   </div>
 </nav>
 
-<!-- HERO -->
 <section id="hero">
   <div class="hero-l">
     <div class="hero-kicker">
@@ -595,12 +505,10 @@ nav{
   </div>
 </section>
 
-<!-- TICKER -->
 <div class="ticker">
   <div class="ticker-inner" id="tickerInner"></div>
 </div>
 
-<!-- PRODUCTS -->
 <section id="products" class="sec">
   <div class="products-top">
     <div>
@@ -611,10 +519,8 @@ nav{
   </div>
 
   <div class="prod-grid reveal r2">
-    <!-- MODULAR -->
     <div class="prod-card">
       <div class="prod-color-bar" style="background:#e8392a"></div>
-      <span class="prod-badge badge-live" data-ko="● 판매중" data-en="● available">● 판매중</span>
       <div class="prod-img-wrap">
         <img src="modular6.png" alt="oscimo 1 modular" class="prod-img">
       </div>
@@ -625,159 +531,9 @@ nav{
         <div class="prod-tags"><span class="prod-tag">plugdata</span><span class="prod-tag">diy</span><span class="prod-tag">cv i/o</span></div>
       </div>
     </div>
-
-    <!-- MIXER -->
-    <div class="prod-card">
-      <div class="prod-color-bar" style="background:#1a8c48"></div>
-      <span class="prod-badge badge-live" data-ko="● 판매중" data-en="● available">● 판매중</span>
-      <div class="prod-img-wrap">
-        <img src="mixer1.png" alt="oscimo 1 mixer" class="prod-img">
-      </div>
-      <div class="prod-info">
-        <div class="prod-series">oscimo 1</div>
-        <div class="prod-name">mixer</div>
-        <p class="prod-desc" data-ko="여러 oscimo 모듈의 신호를 하나로 믹싱. 각 채널의 볼륨과 레벨을 실시간으로 제어합니다." data-en="mix signals from multiple oscimo modules into one. control volume and level of each channel in real time.">여러 oscimo 모듈의 신호를 하나로 믹싱. 각 채널의 볼륨과 레벨을 실시간으로 제어합니다.</p>
-        <div class="prod-tags"><span class="prod-tag">multi ch</span><span class="prod-tag">cv ctrl</span></div>
-      </div>
     </div>
-
-    <!-- CONTROLLER -->
-    <div class="prod-card">
-      <div class="prod-color-bar" style="background:#555"></div>
-      <span class="prod-badge badge-live" data-ko="● 판매중" data-en="● available">● 판매중</span>
-      <div class="prod-img-wrap">
-        <img src="controller1.png" alt="oscimo 1 controller" class="prod-img">
-      </div>
-      <div class="prod-info">
-        <div class="prod-series">oscimo 1</div>
-        <div class="prod-name">controller</div>
-        <p class="prod-desc" data-ko="oscimo 시스템의 지휘자. OLED 디스플레이와 노브로 모든 모듈을 하나로 지휘합니다." data-en="the conductor of your oscimo system. command every module with an oled display and a single knob.">oscimo 시스템의 지휘자. OLED 디스플레이와 노브로 모든 모듈을 하나로 지휘합니다.</p>
-        <div class="prod-tags"><span class="prod-tag">oled</span><span class="prod-tag">midi</span><span class="prod-tag">cv out</span></div>
-      </div>
-    </div>
-
-    <!-- FILTER -->
-    <div class="prod-card">
-      <div class="prod-color-bar" style="background:#1a55cc"></div>
-      <span class="prod-badge badge-live" data-ko="● 판매중" data-en="● available">● 판매중</span>
-      <div class="prod-img-wrap">
-        <img src="filter5.png" alt="oscimo 1 filter" class="prod-img">
-      </div>
-      <div class="prod-info">
-        <div class="prod-series">oscimo 1</div>
-        <div class="prod-name">filter</div>
-        <p class="prod-desc" data-ko="plugdata 기반 필터 모듈. 컷오프, 레조넌스, LFO 변조를 손끝으로 제어하며 음색을 조각합니다." data-en="a plugdata-based filter module. sculpt your tone by controlling cutoff, resonance, and lfo modulation with your hands.">plugdata 기반 필터 모듈. 컷오프, 레조넌스, LFO 변조를 손끝으로 제어하며 음색을 조각합니다.</p>
-        <div class="prod-tags"><span class="prod-tag">plugdata</span><span class="prod-tag">cv mod</span></div>
-      </div>
-    </div>
-  </div>
 </section>
 
-<!-- BIG PHOTO -->
-<div class="bigphoto reveal">
-  <img src="oscimo_series2.jpg" alt="oscimo 1 series">
-</div>
-
-<!-- HOW IT WORKS -->
-<section id="how" class="sec" style="background:var(--bg2)">
-  <div class="sec-label reveal" data-ko="작동 원리" data-en="how it works">작동 원리</div>
-  <h2 class="sec-h reveal r1" data-ko="소리를 만드는<br><strong>세 단계</strong>" data-en="three steps<br>to your <strong>sound</strong>">소리를 만드는<br><strong>세 단계</strong></h2>
-
-  <div class="how-layout">
-    <div class="how-steps">
-      <div class="how-step reveal r1">
-        <div class="step-num">01</div>
-        <div>
-          <div class="step-title" data-ko="plugdata로 패치 설계" data-en="design with plugdata">plugdata로 패치 설계</div>
-          <p class="step-desc" data-ko="무료 오픈소스 툴 plugdata로 신디사이저 구조를 설계합니다. 블록을 연결하듯 VCO, VCF, LFO를 조합하세요." data-en="design your synthesizer with free open-source plugdata. connect vco, vcf, and lfo blocks like wiring a circuit.">무료 오픈소스 툴 plugdata로 신디사이저 구조를 설계합니다. 블록을 연결하듯 VCO, VCF, LFO를 조합하세요.</p>
-          <div class="step-note" style="border-color:#c4a0ff;color:#9966cc;background:#f5f0ff" data-ko="plugdata.org — 무료 · 비주얼 패치 프로그래밍" data-en="plugdata.org — free · visual patch programming">plugdata.org — 무료 · 비주얼 패치 프로그래밍</div>
-        </div>
-      </div>
-      <div class="how-step reveal r2">
-        <div class="step-num">02</div>
-        <div>
-          <div class="step-title" data-ko="oscimo에 업로드" data-en="upload to oscimo">oscimo에 업로드</div>
-          <p class="step-desc" data-ko="설계한 패치를 USB로 oscimo에 업로드합니다. 소프트웨어가 하드웨어가 되는 순간입니다." data-en="upload your patch to oscimo via usb. the moment your software becomes hardware.">설계한 패치를 USB로 oscimo에 업로드합니다. 소프트웨어가 하드웨어가 되는 순간입니다.</p>
-          <div class="step-note" style="border-color:#88bbff;color:#2255cc;background:#f0f4ff" data-ko="usb 연결 → 업로드 → 즉시 실행" data-en="usb connect → upload → runs instantly">usb 연결 → 업로드 → 즉시 실행</div>
-        </div>
-      </div>
-      <div class="how-step reveal r3">
-        <div class="step-num">03</div>
-        <div>
-          <div class="step-title" data-ko="노브로 연주 & 실험" data-en="play & experiment">노브로 연주 & 실험</div>
-          <p class="step-desc" data-ko="실제 노브와 버튼, 패치 포트로 소리를 제어합니다. 화면이 아닌 손으로 소리를 만집니다." data-en="control sound with real knobs, buttons, and patch ports. touch the sound with your hands, not a screen.">실제 노브와 버튼, 패치 포트로 소리를 제어합니다. 화면이 아닌 손으로 소리를 만집니다.</p>
-          <div class="step-note" style="border-color:#88ddaa;color:#1a8c48;background:#f0fff5" data-ko="4 × 노브 · 패치 포트 cv · 실시간 제어" data-en="4 × knobs · patch port cv · real-time control">4 × 노브 · 패치 포트 cv · 실시간 제어</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="reveal r2">
-      <img src="modular8.png" alt="oscimo assembly" class="how-img">
-      <p class="how-cap" data-ko="oscimo 1 modular — pcb + 3d 프린팅 케이스 · 직접 납땜하고 조립하는 diy 키트" data-en="oscimo 1 modular — pcb + 3d printed case · a diy kit you solder and assemble yourself">oscimo 1 modular — pcb + 3d 프린팅 케이스 · 직접 납땜하고 조립하는 diy 키트</p>
-    </div>
-  </div>
-</section>
-
-<!-- DIY -->
-<section id="diy" class="sec">
-  <div class="sec-label reveal" data-ko="diy 키트" data-en="diy kit">diy 키트</div>
-  <h2 class="sec-h reveal r1" data-ko="직접 만드는<br><strong>재미까지</strong>" data-en="the joy of<br><strong>building it yourself</strong>">직접 만드는<br><strong>재미까지</strong></h2>
-  <p class="sec-body reveal r2" data-ko="oscimo는 조립 키트로 제공됩니다.<br><strong>내 손으로 만든 신디사이저</strong>로 소리를 만드세요." data-en="oscimo comes as an assembly kit.<br>make sound with a synthesizer <strong>you built yourself</strong>.">oscimo는 조립 키트로 제공됩니다.<br><strong>내 손으로 만든 신디사이저</strong>로 소리를 만드세요.</p>
-
-  <div class="diy-layout">
-    <div class="reveal r1">
-      <img src="modular1.png" alt="oscimo PCB" class="diy-img">
-      <img src="modular5.jpg" alt="oscimo assembled" class="diy-img">
-    </div>
-    <div class="reveal r2">
-      <div class="sec-label" style="margin-bottom:14px" data-ko="구성품" data-en="included parts">구성품</div>
-      <div class="parts">
-        <div class="part"><div class="part-n">01</div><div><div class="part-name">main pcb</div><div class="part-note" data-ko="oscimo 메인 보드" data-en="oscimo main board">oscimo 메인 보드</div></div></div>
-        <div class="part"><div class="part-n">02</div><div><div class="part-name">rotary knobs × 4</div><div class="part-note" data-ko="소리를 손으로 제어" data-en="control sound by hand">소리를 손으로 제어</div></div></div>
-        <div class="part"><div class="part-n">03</div><div><div class="part-name">patch jacks</div><div class="part-note" data-ko="3.5mm cv 입출력" data-en="3.5mm cv input/output">3.5mm cv 입출력</div></div></div>
-        <div class="part"><div class="part-n">04</div><div><div class="part-name">push buttons</div><div class="part-note" data-ko="게이트 · 트리거" data-en="gate · trigger">게이트 · 트리거</div></div></div>
-        <div class="part"><div class="part-n">05</div><div><div class="part-name">3d printed case</div><div class="part-note" data-ko="별도 판매 · techtreeshop" data-en="sold separately · techtreeshop">별도 판매 · techtreeshop</div></div></div>
-      </div>
-      <div class="diff-wrap">
-        <div class="diff-label" data-ko="난이도" data-en="difficulty">난이도</div>
-        <div class="diff-bar"><div class="diff-fill"></div></div>
-        <div class="diff-note" data-ko="기초 납땜 수준 · 초중급자 권장" data-en="basic soldering · beginner friendly">기초 납땜 수준 · 초중급자 권장</div>
-      </div>
-
-      <div class="video-wrap">
-        <div class="video-label" data-ko="조립 영상" data-en="assembly video">조립 영상</div>
-        <div class="video-title" data-ko="oscimo 조립하기" data-en="building oscimo">oscimo 조립하기</div>
-        <div class="video-box">
-          <iframe src="https://www.youtube.com/embed/rFcX7s3LaBo" title="oscimo assembly" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- EXPAND -->
-<section id="expand" class="sec" style="background:var(--bg2)">
-  <div class="sec-label reveal" data-ko="무한 확장" data-en="infinite expansion">무한 확장</div>
-  <h2 class="sec-h reveal r1" data-ko="하나의 하드웨어,<br><strong>무한한 악기</strong>" data-en="one hardware.<br><strong>infinite instruments.</strong>">하나의 하드웨어,<br><strong>무한한 악기</strong></h2>
-  <p class="sec-body reveal r2" data-ko="패치만 바꾸면 완전히 다른 악기가 됩니다.<br>oscimo를 여러 개 연결하면 <strong>진짜 모듈러 시스템</strong>이 완성됩니다." data-en="swap the patch and it becomes a different instrument.<br>connect multiple oscimos to build a <strong>real modular system</strong>.">패치만 바꾸면 완전히 다른 악기가 됩니다.<br>oscimo를 여러 개 연결하면 <strong>진짜 모듈러 시스템</strong>이 완성됩니다.</p>
-
-  <img src="modular_samples.png" alt="oscimo modular system" class="expand-img reveal r2">
-  <p class="expand-cap reveal r3" data-ko="oscimo 1 modular × 3 — cv 패치 케이블로 연결한 모듈러 시스템" data-en="oscimo 1 modular × 3 — modular system connected via cv patch cables">oscimo 1 modular × 3 — cv 패치 케이블로 연결한 모듈러 시스템</p>
-
-  <div class="expand-grid reveal r3">
-    <div class="expand-card" style="border-top-color:#e8392a"><div class="expand-n">01</div><div class="expand-t" data-ko="패치 교체" data-en="swap patches">패치 교체</div><p class="expand-d" data-ko="plugdata에서 새 패치를 설계하고 업로드하면 즉시 다른 악기가 됩니다." data-en="design a new patch in plugdata, upload, and instantly become a different instrument.">plugdata에서 새 패치를 설계하고 업로드하면 즉시 다른 악기가 됩니다.</p></div>
-    <div class="expand-card" style="border-top-color:#f0a500"><div class="expand-n">02</div><div class="expand-t" data-ko="cv 연결" data-en="cv connect">cv 연결</div><p class="expand-d" data-ko="패치 포트로 oscimo끼리 cv 신호를 주고받습니다." data-en="exchange cv signals between oscimos via patch ports.">패치 포트로 oscimo끼리 cv 신호를 주고받습니다.</p></div>
-    <div class="expand-card" style="border-top-color:#1a55cc"><div class="expand-n">03</div><div class="expand-t" data-ko="시스템 확장" data-en="expand system">시스템 확장</div><p class="expand-d" data-ko="mixer, controller, filter 모듈을 추가해 완전한 oscimo 1 시스템을 구축합니다." data-en="add mixer, controller, and filter modules to complete the full oscimo 1 system.">mixer, controller, filter 모듈을 추가해 완전한 oscimo 1 시스템을 구축합니다.</p></div>
-    <div class="expand-card" style="border-top-color:#1a8c48"><div class="expand-n">04</div><div class="expand-t" data-ko="커뮤니티 패치" data-en="community patches">커뮤니티 패치</div><p class="expand-d" data-ko="다른 사용자가 만든 패치를 업로드해서 바로 사용할 수 있습니다." data-en="upload and use patches made by other users in the community.">다른 사용자가 만든 패치를 업로드해서 바로 사용할 수 있습니다.</p></div>
-  </div>
-
-  <div class="expand-note reveal r4">
-    <div class="expand-note-icon">🔌</div>
-    <div class="expand-note-text" data-ko="<strong>oscimo를 여러 개 연결하면 진짜 모듈러 시스템이 됩니다.</strong><br>cv 신호를 주고받으면 각각의 oscimo가 하나의 모듈이 됩니다." data-en="<strong>connect multiple oscimos and you have a real modular system.</strong><br>each oscimo becomes a module exchanging cv signals."><strong>oscimo를 여러 개 연결하면 진짜 모듈러 시스템이 됩니다.</strong><br>cv 신호를 주고받으면 각각의 oscimo가 하나의 모듈이 됩니다.</div>
-  </div>
-</section>
-
-<!-- PLUGDATA -->
 <section id="plugdata" class="sec">
   <div class="sec-label reveal" data-ko="plugdata" data-en="plugdata">plugdata</div>
   <h2 class="sec-h reveal r1" data-ko="소프트웨어로<br><strong>소리를 설계한다</strong>" data-en="design your sound<br><strong>in software</strong>">소프트웨어로<br><strong>소리를 설계한다</strong></h2>
@@ -791,60 +547,32 @@ nav{
         <div class="pd-dot" style="background:#44cc66"></div>
         <span class="pd-bar-title">oscimo-patch.pd — plugdata</span>
       </div>
-      <div style="padding:20px">
-        <div class="pd-graph" id="pdGraph"></div>
-      </div>
+      <img src="plugdata_screenshot.png" alt="oscimo plugdata patch screenshot" class="pd-image">
     </div>
 
     <div class="pd-features reveal r2">
       <div class="pd-feat">
-        <div class="pd-feat-icon" style="border-color:#ddd;color:#9966cc">🔗</div>
+        <div class="pd-feat-icon">🔗</div>
         <div>
           <div class="pd-feat-title" data-ko="비주얼 패치 프로그래밍" data-en="visual patch programming">비주얼 패치 프로그래밍</div>
-          <p class="pd-feat-desc" data-ko="코딩 없이 블록을 연결해 신디사이저 회로를 설계합니다. vco, vcf, vca, lfo, adsr — 원하는 구조를 자유롭게." data-en="design synthesizer circuits by connecting blocks — no coding needed. vco, vcf, vca, lfo, adsr — build any structure.">코딩 없이 블록을 연결해 신디사이저 회로를 설계합니다.</p>
+          <p class="pd-feat-desc" data-ko="코딩 없이 블록을 연결해 신디사이저 회로를 설계합니다. vco, vcf, vca, lfo, adsr — 원하는 구조를 자유롭게." data-en="design synthesizer circuits by connecting blocks — no coding needed. vco, vcf, vca, lfo, adsr — build any structure.">코딩 없이 블록을 연결해 신디사이저 회로를 설계합니다. vco, vcf, vca, lfo, adsr를 자유롭게 조합하세요.</p>
         </div>
       </div>
       <div class="pd-feat">
-        <div class="pd-feat-icon" style="border-color:#ddd;color:#2255cc">📤</div>
+        <div class="pd-feat-icon">📤</div>
         <div>
           <div class="pd-feat-title" data-ko="usb로 즉시 업로드" data-en="instant usb upload">usb로 즉시 업로드</div>
           <p class="pd-feat-desc" data-ko="설계한 패치를 oscimo에 업로드하면 즉시 실행됩니다. 패치를 바꿀 때마다 완전히 다른 신디사이저가 됩니다." data-en="upload your patch and it runs instantly. every new patch turns oscimo into a completely different synthesizer.">설계한 패치를 oscimo에 업로드하면 즉시 실행됩니다.</p>
         </div>
       </div>
       <div class="pd-feat">
-        <div class="pd-feat-icon" style="border-color:#ddd;color:#1a8c48">∞</div>
+        <div class="pd-feat-icon">∞</div>
         <div>
           <div class="pd-feat-title" data-ko="무한한 사운드 가능성" data-en="infinite possibilities">무한한 사운드 가능성</div>
-          <p class="pd-feat-desc" data-ko="드럼 머신, fm 신디사이저, 앰비언트 이펙터… 하나의 oscimo가 무수히 다른 악기가 됩니다." data-en="drum machine, fm synthesizer, ambient effects… one oscimo becomes countless different instruments.">드럼 머신, fm 신디사이저, 이펙터… 하나의 oscimo가 무수히 다른 악기가 됩니다.</p>
+          <p class="pd-feat-desc" data-ko="드럼 머신, fm 신디사이저, 앰비언트 이펙터… 하나의 oscimo가 무수히 다른 악기가 됩니다." data-en="drum machine, fm synthesizer, ambient effects… one oscimo becomes countless different instruments.">하나의 oscimo가 무수히 다른 악기가 됩니다.</p>
         </div>
       </div>
     </div>
-  </div>
-
-  <div class="video-wrap reveal r3">
-    <div class="video-label" data-ko="demo 영상" data-en="demo video">demo 영상</div>
-    <div class="video-title" data-ko="plugdata 패치 → oscimo 업로드 → 소리 출력" data-en="plugdata patch → oscimo upload → sound output">plugdata 패치 → oscimo 업로드 → 소리 출력</div>
-    <div class="video-box">
-      <iframe src="https://www.youtube.com/embed/OUot7jBZcec" title="plugdata oscimo demo" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-    </div>
-  </div>
-</section>
-
-<!-- CTA -->
-<section id="cta">
-  <div class="cta-grid-bg"></div>
-  <div class="cta-label reveal" data-ko="oscimo · techtreeshop" data-en="oscimo · techtreeshop">oscimo · techtreeshop</div>
-  <h2 class="cta-h reveal r1" data-ko="만들고<br><strong>설계하고</strong><br><span class='yl'>확장하라</span>" data-en="build it.<br><strong>design it.</strong><br><span class='yl'>expand it.</span>">
-    만들고<br><strong>설계하고</strong><br><span class="yl">확장하라</span>
-  </h2>
-  <p class="cta-sub reveal r2" data-ko="plugdata로 소리를 설계하고, 납땜으로 하드웨어를 만들고,<br>패치를 바꿔가며 무한히 확장하는 당신만의 모듈러 신디사이저." data-en="design your sound in plugdata, build the hardware,<br>and expand infinitely — your own modular synthesizer.">plugdata로 소리를 설계하고, 납땜으로 하드웨어를 만들고,<br>패치를 바꿔가며 무한히 확장하는 당신만의 모듈러 신디사이저.</p>
-  <a href="https://smartstore.naver.com/techtreeshop" target="_blank" class="cta-btn reveal r3" data-ko="네이버 스마트스토어에서 구매하기 →" data-en="buy on naver smartstore →">네이버 스마트스토어에서 구매하기 →</a>
-
-  <div class="cta-foot reveal r4">
-    <div class="cta-fi"><div class="cta-fi-l">compatible</div><div class="cta-fi-v">plugdata (pure data)</div></div>
-    <div class="cta-fi"><div class="cta-fi-l">assembly</div><div class="cta-fi-v" data-ko="diy 납땜 키트" data-en="diy soldering kit">diy 납땜 키트</div></div>
-    <div class="cta-fi"><div class="cta-fi-l">expansion</div><div class="cta-fi-v">cv patch cable</div></div>
-    <div class="cta-fi"><div class="cta-fi-l">store</div><div class="cta-fi-v">naver · techtreeshop</div></div>
   </div>
 </section>
 
@@ -862,33 +590,7 @@ const inner = document.getElementById('tickerInner');
 const doubled = [...items, ...items];
 inner.innerHTML = doubled.map(t => `<span class="ticker-item">${t}</span>`).join('');
 
-/* PATCH GRAPH */
-const g = document.getElementById('pdGraph');
-if(g){
-  const nodes = [
-    {label:'osc~',x:10,y:16,c:'#ff6644'},
-    {label:'lfo~',x:10,y:90,c:'#cc88ff'},
-    {label:'vcf~',x:130,y:48,c:'#ffaa00'},
-    {label:'adsr~',x:228,y:90,c:'#44cc88'},
-    {label:'*~',x:248,y:32,c:'#44aaff'},
-    {label:'dac~',x:354,y:48,c:'#888'},
-  ];
-  [{f:0,t:2},{f:1,t:2},{f:2,t:4},{f:3,t:4},{f:4,t:5}].forEach(c => {
-    const fn=nodes[c.f],tn=nodes[c.t];
-    const x1=fn.x+36,y1=fn.y+12,x2=tn.x,y2=tn.y+12;
-    const dx=x2-x1,dy=y2-y1,len=Math.sqrt(dx*dx+dy*dy),angle=Math.atan2(dy,dx)*180/Math.PI;
-    const l=document.createElement('div');
-    l.style.cssText=`position:absolute;left:${x1}px;top:${y1}px;width:${len}px;height:1px;background:linear-gradient(90deg,${fn.c}66,${tn.c}66);transform-origin:left center;transform:rotate(${angle}deg);pointer-events:none;`;
-    g.appendChild(l);
-  });
-  nodes.forEach(n => {
-    const el=document.createElement('div');
-    el.className='pd-node';
-    el.style.cssText=`left:${n.x}px;top:${n.y}px;border-color:${n.c}55;color:${n.c};`;
-    el.textContent=n.label;
-    g.appendChild(el);
-  });
-}
+/* (기존 PATCH GRAPH 자바스크립트 코드는 삭제되었습니다) */
 
 /* LANG */
 let lang = 'ko';
