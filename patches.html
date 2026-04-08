@@ -10,87 +10,162 @@
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --red:#e8392a; --bg:#f4f3ee; --bg2:#eceae4; --bg3:#e2e0d8;
-  --text:#111110; --text2:#555450; --text3:#999890;
-  --border:#d8d6ce; --border2:#c4c2ba;
+  --red:#e8392a;
+  --yellow:#f0a500;
+  --blue:#1a55cc;
+  --green:#1a8c48;
+  --bg:#f4f3ee;
+  --bg2:#eceae4;
+  --bg3:#e2e0d8;
+  --text:#111110;
+  --text2:#555450;
+  --text3:#999890;
+  --border:#d8d6ce;
+  --border2:#c4c2ba;
 }
 html{scroll-behavior:smooth}
 body{
-  background:var(--bg); color:var(--text);
+  background:var(--bg);color:var(--text);
   font-family:'DM Sans',sans-serif;
-  overflow-x:hidden; font-size:14px; line-height:1.6;
+  overflow-x:hidden;font-size:14px;line-height:1.6;
 }
 
 /* REVEAL */
 .reveal{opacity:0;transform:translateY(18px);transition:opacity 0.75s cubic-bezier(0.16,1,0.3,1),transform 0.75s cubic-bezier(0.16,1,0.3,1)}
 .reveal.on{opacity:1;transform:none}
 
-/* NAV - GUIDE 제거됨 */
+/* NAV (index.html과 동일) */
 nav{
-  position:fixed; top:0; left:0; right:0; z-index:200;
-  height:50px; padding:0 5%;
-  display:flex; align-items:center; justify-content:space-between;
-  background:rgba(244,243,238,0.96); backdrop-filter:blur(10px);
+  position:fixed;top:0;left:0;right:0;z-index:200;
+  height:50px;padding:0 5%;
+  display:flex;align-items:center;justify-content:space-between;
+  background:rgba(244,243,238,0.96);
+  backdrop-filter:blur(10px);
   border-bottom:1px solid var(--border);
 }
 .nav-logo{
-  font-family:'DM Mono',monospace; font-size:14px; font-weight:500;
-  color:var(--text); text-decoration:none; letter-spacing:-0.3px;
+  font-family:'DM Mono',monospace;font-size:14px;font-weight:500;
+  color:var(--text);text-decoration:none;letter-spacing:-0.3px;
 }
-.nav-logo em{color:var(--red); font-style:normal}
-.nav-links{display:flex; gap:28px; list-style:none}
+.nav-logo em{color:var(--red);font-style:normal}
+.nav-links{display:flex;gap:28px;list-style:none}
 .nav-links a{
-  font-family:'DM Mono',monospace; font-size:11px;
-  color:var(--text3); text-decoration:none;
-  letter-spacing:0.3px; transition:color 0.15s;
+  font-family:'DM Mono',monospace;font-size:11px;
+  color:var(--text3);text-decoration:none;
+  letter-spacing:0.3px;transition:color 0.15s;
 }
-.nav-links a:hover, .nav-links a.on{color:var(--text)}
+.nav-links a:hover,.nav-links a.on{color:var(--text)}
 .lang-btn{
-  font-family:'DM Mono',monospace; font-size:10px;
-  color:var(--text3); background:none; border:1px solid var(--border);
-  cursor:pointer; padding:4px 10px; transition:all 0.15s;
+  font-family:'DM Mono',monospace;font-size:10px;
+  color:var(--text3);background:none;border:1px solid var(--border);
+  cursor:pointer;padding:4px 10px;transition:all 0.15s;letter-spacing:0.5px;
 }
+.lang-btn:hover{color:var(--text);border-color:var(--border2)}
 
 /* SECTION & TITLES */
 .sec{padding:100px 5%}
 .sec-label{
-  font-family:'DM Mono',monospace; font-size:10px;
-  color:var(--text3); letter-spacing:2px; text-transform:uppercase;
-  margin-bottom:18px; display:flex; align-items:center; gap:10px;
+  font-family:'DM Mono',monospace;font-size:10px;
+  color:var(--text3);letter-spacing:2px;
+  text-transform:uppercase;margin-bottom:18px;
+  display:flex;align-items:center;gap:10px;
 }
-.sec-label::before{content:''; width:16px; height:1px; background:var(--text3)}
+.sec-label::before{content:'';width:16px;height:1px;background:var(--text3)}
 .sec-h{
-  font-family:'DM Sans',sans-serif; font-size:clamp(32px,4vw,54px);
-  font-weight:300; letter-spacing:-1.5px; line-height:1.1; margin-bottom:18px;
+  font-family:'DM Sans',sans-serif;
+  font-size:clamp(32px,4vw,54px);
+  font-weight:300;letter-spacing:-1.5px;
+  line-height:1.1;color:var(--text);margin-bottom:18px;
 }
 .sec-h strong{font-weight:500}
-.sec-body{font-size:15px; line-height:1.78; color:var(--text2); max-width:600px; margin-bottom:40px}
+.sec-body{font-size:15px;line-height:1.78;color:var(--text2);max-width:560px}
 
-/* IMAGE BOX */
-.img-box{
-  width:100%; max-width:900px; margin:40px 0;
-  border:1px solid var(--border); background:var(--bg2);
-  line-height:0; overflow:hidden;
+/* WORKFLOW */
+.workflow-grid{
+  display:grid;grid-template-columns:repeat(auto-fit, minmax(240px, 1fr));
+  gap:1px;background:var(--border);margin-top:48px;
 }
-.img-box img{width:100%; height:auto; filter:grayscale(0.2); transition:filter 0.3s}
-.img-box img:hover{filter:grayscale(0)}
+.wf-card{
+  background:var(--bg);padding:32px 28px;
+  transition:background 0.2s;
+}
+.wf-card:hover{background:var(--bg2)}
+.wf-num{
+  font-family:'DM Mono',monospace;font-size:11px;
+  color:var(--red);letter-spacing:1px;margin-bottom:12px;
+}
+.wf-title{font-weight:500;font-size:16px;margin-bottom:8px;letter-spacing:-0.3px}
+.wf-desc{font-size:13px;color:var(--text2);line-height:1.7}
 
-/* WORKFLOW & GRID (기존 스타일 유지) */
-.workflow-grid{display:grid; grid-template-columns:repeat(auto-fit, minmax(240px, 1fr)); gap:1px; background:var(--border); margin-top:48px}
-.wf-card{background:var(--bg); padding:32px 28px}
-.wf-num{font-family:'DM Mono'; font-size:11px; color:var(--red); margin-bottom:12px}
-.wf-title{font-weight:500; font-size:16px; margin-bottom:8px}
+/* COMPILER BOX (Alert/Note Style) */
+.compiler-note{
+  margin-top:48px;padding:24px 28px;
+  background:var(--bg2);border:1px solid var(--border);
+  border-left:2px solid var(--yellow);
+  display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:24px;
+}
+.compiler-btn{
+  font-family:'DM Mono',monospace;font-size:11px;
+  padding:11px 28px;background:var(--text);color:var(--bg);
+  text-decoration:none;transition:all 0.15s;
+}
+.compiler-btn:hover{background:var(--red)}
 
-.controls{display:flex; gap:16px; align-items:center; flex-wrap:wrap; margin-top:60px; margin-bottom:32px}
-.search-input{flex:1; min-width:240px; background:transparent; border:1px solid var(--border); padding:10px 16px; font-family:'DM Mono'; font-size:11px}
-.tag{font-family:'DM Mono'; font-size:9px; letter-spacing:1px; padding:5px 12px; border:1px solid var(--border2); color:var(--text3); background:none; cursor:pointer}
-.tag.active{border-color:var(--text); color:var(--text); background:var(--bg3)}
+/* CONTROLS (Search & Filter) */
+.controls{
+  display:flex;gap:16px;align-items:center;flex-wrap:wrap;
+  margin-top:48px;margin-bottom:32px;
+}
+.search-input{
+  flex:1;min-width:240px;max-width:320px;
+  background:transparent;border:1px solid var(--border);
+  padding:10px 16px;font-family:'DM Mono',monospace;font-size:11px;
+  color:var(--text);outline:none;
+}
+.search-input:focus{border-color:var(--text)}
+.filter-group{display:flex;gap:6px;flex-wrap:wrap}
+.tag{
+  font-family:'DM Mono',monospace;font-size:9px;
+  letter-spacing:1px;padding:5px 12px;
+  border:1px solid var(--border2);color:var(--text3);
+  background:none;cursor:pointer;transition:all 0.15s;
+}
+.tag:hover,.tag.active{border-color:var(--text);color:var(--text)}
+.tag.active{background:var(--bg3)}
 
-.patch-grid{display:grid; grid-template-columns:repeat(auto-fill, minmax(280px, 1fr)); gap:1px; background:var(--border); border-top:1px solid var(--border); border-bottom:1px solid var(--border)}
-.patch-card{background:var(--bg); padding:24px; display:flex; flex-direction:column; gap:14px}
-.patch-cat{font-family:'DM Mono'; font-size:9px; letter-spacing:1.5px; padding:3px 8px; border:1px solid; text-transform:uppercase}
-.cat-synth{color:var(--red); border-color:rgba(232,57,42,0.3)}
-.download-btn{font-family:'DM Mono'; font-size:11px; padding:8px 16px; border:1px solid var(--border2); color:var(--text2); text-decoration:none; text-align:center}
+/* PATCH GRID */
+.patch-grid{
+  display:grid;grid-template-columns:repeat(auto-fill, minmax(280px, 1fr));
+  gap:1px;background:var(--border);border-top:1px solid var(--border);border-bottom:1px solid var(--border);
+}
+.patch-card{
+  background:var(--bg);padding:24px;
+  display:flex;flex-direction:column;gap:14px;
+  transition:background 0.2s;
+}
+.patch-card:hover{background:var(--bg2)}
+.patch-header{display:flex;justify-content:space-between;align-items:center}
+.patch-cat{
+  font-family:'DM Mono',monospace;font-size:9px;
+  letter-spacing:1.5px;padding:3px 8px;border:1px solid;
+  text-transform:uppercase;
+}
+.cat-synth{color:var(--red);border-color:rgba(232,57,42,0.3)}
+.cat-drum{color:var(--yellow);border-color:rgba(240,165,0,0.3)}
+.cat-fx{color:var(--blue);border-color:rgba(26,85,204,0.3)}
+
+.patch-name{font-weight:500;font-size:18px;letter-spacing:-0.3px}
+.patch-desc{font-size:13px;color:var(--text2);line-height:1.65;flex:1}
+.download-btn{
+  font-family:'DM Mono',monospace;font-size:11px;
+  padding:8px 16px;border:1px solid var(--border2);
+  color:var(--text2);text-decoration:none;text-align:center;
+  transition:all 0.15s;
+}
+.download-btn:hover{border-color:var(--text);color:var(--text)}
+.download-btn.done{background:var(--green);color:white;border-color:var(--green)}
+
+@media(max-width:768px){.sec{padding:80px 5%}}
 </style>
 </head>
 <body>
@@ -100,45 +175,51 @@ nav{
   <div class="nav-links">
     <a href="index.html">HARDWARE</a>
     <a href="patches.html" class="on">PATCHES</a>
-    </div>
+    <a href="#">GUIDE</a>
+  </div>
   <button class="lang-btn" id="langBtn">EN</button>
 </nav>
 
 <section class="sec reveal">
-  <div class="sec-label" data-ko="소프트웨어로 소리를 설계한다" data-en="DESIGN SOUND WITH SOFTWARE">소프트웨어로 소리를 설계한다</div>
-  <h1 class="sec-h" data-ko="당신의 패치를 <strong>직접 만드세요</strong>" data-en="Create your own <strong>Patches</strong>">당신의 패치를 <strong>직접 만드세요</strong></h1>
-  <p class="sec-body" data-ko="oscimo는 PlugData(Pure Data)를 통해 무한한 사운드 가능성을 제공합니다. 아래 이미지는 실제 작업 화면이며, 직접 만든 패치를 라이브러리에 추가할 수 있습니다." 
-     data-en="oscimo offers infinite sound possibilities through PlugData (Pure Data). The image below shows the actual workspace where you can create and add your own patches.">
-    oscimo는 PlugData(Pure Data)를 통해 무한한 사운드 가능성을 제공합니다. 아래 이미지는 실제 작업 화면이며, 직접 만든 패치를 라이브러리에 추가할 수 있습니다.
+  <div class="sec-label" data-ko="패치 라이브러리" data-en="PATCH LIBRARY">PATCH LIBRARY</div>
+  <h1 class="sec-h" data-ko="당신의 사운드를 <strong>확장하세요</strong>" data-en="Expand your <strong>Soundscape</strong>">당신의 사운드를 <strong>확장하세요</strong></h1>
+  <p class="sec-body" data-ko="oscimo 디바이스에 바로 업로드하여 사용할 수 있는 검증된 패치들입니다. 각 패치를 커스텀하여 자신만의 사운드를 만들어보세요." 
+     data-en="Verified patches ready to upload to your oscimo device. Customize each patch to create your own unique sound.">
+    oscimo 디바이스에 바로 업로드하여 사용할 수 있는 검증된 패치들입니다. 각 패치를 커스텀하여 자신만의 사운드를 만들어보세요.
   </p>
-
-  <div class="img-box">
-    <img src="plugdata_work.jpg" alt="PlugData Workspace">
-  </div>
 
   <div class="workflow-grid">
     <div class="wf-card">
       <div class="wf-num">01</div>
       <div class="wf-title" data-ko="패치 선택" data-en="Choose Patch">패치 선택</div>
-      <div class="wf-desc" data-ko="라이브러리에서 파일을 다운로드하세요." data-en="Download files from library.">라이브러리에서 파일을 다운로드하세요.</div>
+      <div class="wf-desc" data-ko="아래 라이브러리에서 마음에 드는 사운드를 찾아 파일을 다운로드하세요." data-en="Find the sound you like and download the patch file.">아래 라이브러리에서 마음에 드는 사운드를 찾아 파일을 다운로드하세요.</div>
     </div>
     <div class="wf-card">
       <div class="wf-num">02</div>
       <div class="wf-title" data-ko="컴파일러 접속" data-en="Open Compiler">컴파일러 접속</div>
-      <div class="wf-desc" data-ko="PlugData 웹 컴파일러를 실행합니다." data-en="Run the PlugData web compiler.">PlugData 웹 컴파일러를 실행합니다.</div>
+      <div class="wf-desc" data-ko="PlugData 웹 컴파일러를 통해 .pd 파일을 바이너리로 변환합니다." data-en="Convert .pd files to binary using the PlugData web compiler.">PlugData 웹 컴파일러를 통해 .pd 파일을 바이너리로 변환합니다.</div>
     </div>
     <div class="wf-card">
       <div class="wf-num">03</div>
       <div class="wf-title" data-ko="업로드" data-en="Upload">업로드</div>
-      <div class="wf-desc" data-ko="기기에 파일을 복사하면 완료됩니다." data-en="Copy files to your device.">기기에 파일을 복사하면 완료됩니다.</div>
+      <div class="wf-desc" data-ko="USB로 연결된 oscimo 디바이스에 변환된 파일을 복사하면 끝!" data-en="Copy the converted file to your oscimo device via USB.">USB로 연결된 oscimo 디바이스에 변환된 파일을 복사하면 끝!</div>
     </div>
+  </div>
+
+  <div class="compiler-note">
+    <div>
+      <div class="wf-title" style="margin-bottom:4px">Web Compiler</div>
+      <div class="wf-desc" data-ko="설치 없이 브라우저에서 바로 패치를 변환하세요." data-en="Convert patches directly in your browser without installation.">설치 없이 브라우저에서 바로 패치를 변환하세요.</div>
+    </div>
+    <a href="https://plugdata.org/compiler.html" target="_blank" class="compiler-btn">OPEN COMPILER</a>
   </div>
 </section>
 
 <section class="sec reveal" style="padding-top:0">
-  <div class="sec-label" data-ko="패치 탐색" data-en="EXPLORE PATCHES">패치 탐색</div>
+  <div class="sec-label" data-ko="탐색" data-en="EXPLORE">EXPLORE</div>
+  
   <div class="controls">
-    <input type="text" id="searchInput" class="search-input" placeholder="Search..." data-ko="검색..." data-en="Search...">
+    <input type="text" id="searchInput" class="search-input" placeholder="Search patches..." data-ko="패치 검색..." data-en="Search patches...">
     <div class="filter-group" id="filterGroup">
       <button class="tag active" data-cat="all">ALL</button>
       <button class="tag" data-cat="synth">SYNTH</button>
@@ -146,16 +227,18 @@ nav{
       <button class="tag" data-cat="fx">FX</button>
     </div>
   </div>
-  <div class="patch-grid" id="patchGrid"></div>
+
+  <div class="patch-grid" id="patchGrid">
+    </div>
 </section>
 
 <script>
-// (JS 로직은 이전과 동일하며, 렌더링 및 언어 전환 기능이 포함되어 있습니다)
 let patches = [];
 let activeFilter = 'all';
 let searchQuery = '';
 let lang = 'ko';
 
+// Reveal 애니메이션 (index.html 로직 적용)
 const observer = new IntersectionObserver(entries => {
   entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('on'); });
 }, { threshold: 0.1 });
@@ -166,15 +249,15 @@ async function load() {
     const res = await fetch('patches.json');
     patches = await res.json();
     render();
-  } catch(e) { console.error("JSON 로드 오류", e); }
+  } catch(e) { console.error("JSON 로드 오류:", e); }
 }
 
 function render() {
   const grid = document.getElementById('patchGrid');
-  if(!grid) return;
   const filtered = patches.filter(p => {
     const matchesFilter = activeFilter === 'all' || p.category === activeFilter;
-    const matchesSearch = p.name.toLowerCase().includes(searchQuery.toLowerCase());
+    const matchesSearch = p.name.toLowerCase().includes(searchQuery.toLowerCase()) || 
+                          p.desc[lang].toLowerCase().includes(searchQuery.toLowerCase());
     return matchesFilter && matchesSearch;
   });
 
@@ -182,14 +265,25 @@ function render() {
     <div class="patch-card">
       <div class="patch-header">
         <span class="patch-cat cat-${p.category}">${p.category}</span>
+        <span style="font-family:'DM Mono'; font-size:9px; color:var(--text3)">${p.difficulty || ''}</span>
       </div>
       <h3 class="patch-name">${p.name}</h3>
       <p class="patch-desc">${p.desc[lang]}</p>
-      <a href="${p.file}" download class="download-btn">${lang==='ko'?'다운로드':'DOWNLOAD'}</a>
+      <a href="${p.file}" download class="download-btn" onclick="onDownload(this)">
+        ${lang==='ko' ? '패치 다운로드' : 'DOWNLOAD'}
+      </a>
     </div>
   `).join('');
 }
 
+function onDownload(btn) {
+  const orig = btn.innerHTML;
+  btn.innerHTML = lang==='ko' ? '완료' : 'DONE';
+  btn.classList.add('done');
+  setTimeout(() => { btn.innerHTML = orig; btn.classList.remove('done'); }, 2000);
+}
+
+// 필터링 및 검색 이벤트
 document.getElementById('filterGroup').addEventListener('click', e => {
   if (!e.target.classList.contains('tag')) return;
   document.querySelectorAll('.tag').forEach(b => b.classList.remove('active'));
@@ -203,17 +297,20 @@ document.getElementById('searchInput').addEventListener('input', e => {
   render();
 });
 
+// 언어 전환 (index.html 스타일)
 const langBtn = document.getElementById('langBtn');
 langBtn.addEventListener('click', () => {
   lang = lang === 'ko' ? 'en' : 'ko';
   langBtn.textContent = lang === 'ko' ? 'EN' : 'KO';
   document.querySelectorAll('[data-ko]').forEach(el => {
-    el.innerHTML = el.getAttribute('data-' + lang);
+    if(el.tagName === 'INPUT') el.placeholder = el.getAttribute('data-'+lang);
+    else el.innerHTML = el.getAttribute('data-'+lang);
   });
   render();
 });
 
 load();
 </script>
+
 </body>
 </html>
