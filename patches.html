@@ -4,401 +4,313 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>oscimo — Patch Library</title>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-LF79QC7VRD"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-LF79QC7VRD');
-</script>
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23161616'/%3E%3Cpolyline points='0,16 4,16 7,4 10,28 13,4 16,28 19,4 22,28 25,16 32,16' fill='none' stroke='%23ff4444' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23f4f3ee'/%3E%3Cpolyline points='0,16 4,16 7,4 10,28 13,4 16,28 19,4 22,28 25,16 32,16' fill='none' stroke='%23e8392a' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Mono:wght@400;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --red:#ff4444;--yellow:#ffcc00;--blue:#44aaff;--green:#44ff88;--purple:#bb88ff;
-  --bg:#161616;--bg2:#1c1c1c;--bg3:#222;--border:#2e2e2e;
-  --text:#d8d8d8;--text2:#b0b0b0;--text3:#888;
+  --red:#e8392a;
+  --yellow:#f0a500;
+  --blue:#1a55cc;
+  --green:#1a8c48;
+  --bg:#f4f3ee;
+  --bg2:#eceae4;
+  --bg3:#e2e0d8;
+  --text:#111110;
+  --text2:#555450;
+  --text3:#999890;
+  --border:#d8d6ce;
+  --border2:#c4c2ba;
 }
 html{scroll-behavior:smooth}
-body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;overflow-x:hidden;min-height:100vh}
+body{
+  background:var(--bg);color:var(--text);
+  font-family:'DM Sans',sans-serif;
+  overflow-x:hidden;font-size:14px;line-height:1.6;
+}
 
-/* NAV */
-nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:0 6%;height:62px;display:flex;align-items:center;justify-content:space-between;background:rgba(22,22,22,0.96);backdrop-filter:blur(14px);border-bottom:1px solid var(--border)}
-.nav-logo{font-family:'Bebas Neue',sans-serif;font-size:23px;color:#fff;letter-spacing:2px;text-decoration:none}
-.nav-logo span{color:var(--red)}
-.nav-right{display:flex;align-items:center;gap:20px}
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(18px);transition:opacity 0.75s cubic-bezier(0.16,1,0.3,1),transform 0.75s cubic-bezier(0.16,1,0.3,1)}
+.reveal.on{opacity:1;transform:none}
+
+/* NAV (index.html과 동일) */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:200;
+  height:50px;padding:0 5%;
+  display:flex;align-items:center;justify-content:space-between;
+  background:rgba(244,243,238,0.96);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--border);
+}
+.nav-logo{
+  font-family:'DM Mono',monospace;font-size:14px;font-weight:500;
+  color:var(--text);text-decoration:none;letter-spacing:-0.3px;
+}
+.nav-logo em{color:var(--red);font-style:normal}
 .nav-links{display:flex;gap:28px;list-style:none}
-.nav-links a{font-family:'Space Mono',monospace;font-size:9px;color:#999;text-decoration:none;letter-spacing:3px;transition:color 0.2s}
-.nav-links a:hover,.nav-links a.active{color:#fff}
-.lang-toggle{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:2px;padding:6px 14px;background:transparent;color:#999;border:1px solid #333;cursor:pointer;transition:all 0.2s}
-.lang-toggle:hover{color:#fff;border-color:#777}
-.nav-cta{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:3px;padding:8px 20px;background:var(--red);color:#fff;text-decoration:none;transition:all 0.2s}
-.nav-cta:hover{background:#e02020}
-@media(max-width:640px){.nav-links{display:none}nav{padding:0 5%}}
+.nav-links a{
+  font-family:'DM Mono',monospace;font-size:11px;
+  color:var(--text3);text-decoration:none;
+  letter-spacing:0.3px;transition:color 0.15s;
+}
+.nav-links a:hover,.nav-links a.on{color:var(--text)}
+.lang-btn{
+  font-family:'DM Mono',monospace;font-size:10px;
+  color:var(--text3);background:none;border:1px solid var(--border);
+  cursor:pointer;padding:4px 10px;transition:all 0.15s;letter-spacing:0.5px;
+}
+.lang-btn:hover{color:var(--text);border-color:var(--border2)}
 
-/* PAGE HEADER */
-.page-header{padding:120px 6% 64px;background:radial-gradient(ellipse at 20% 50%,#1e0800 0%,#161616 55%);border-bottom:1px solid var(--border)}
-.page-tag{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:6px;color:var(--red);display:flex;align-items:center;gap:10px;margin-bottom:16px}
-.page-tag::before{content:'';display:block;width:18px;height:1px;background:var(--red)}
-.page-h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(48px,8vw,96px);line-height:0.9;color:#fff;margin-bottom:16px}
-.page-h1 span{color:var(--yellow)}
-.page-desc{font-size:16px;color:var(--text2);line-height:1.85;max-width:560px}
-.page-desc strong{color:#e0e0e0;font-weight:600}
+/* SECTION & TITLES */
+.sec{padding:100px 5%}
+.sec-label{
+  font-family:'DM Mono',monospace;font-size:10px;
+  color:var(--text3);letter-spacing:2px;
+  text-transform:uppercase;margin-bottom:18px;
+  display:flex;align-items:center;gap:10px;
+}
+.sec-label::before{content:'';width:16px;height:1px;background:var(--text3)}
+.sec-h{
+  font-family:'DM Sans',sans-serif;
+  font-size:clamp(32px,4vw,54px);
+  font-weight:300;letter-spacing:-1.5px;
+  line-height:1.1;color:var(--text);margin-bottom:18px;
+}
+.sec-h strong{font-weight:500}
+.sec-body{font-size:15px;line-height:1.78;color:var(--text2);max-width:560px}
 
-/* ── WORKFLOW SECTION ── */
-.workflow-section{padding:64px 6%;background:var(--bg2);border-bottom:1px solid var(--border)}
-.section-tag{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:6px;color:var(--red);display:flex;align-items:center;gap:10px;margin-bottom:16px}
-.section-tag::before{content:'';display:block;width:18px;height:1px;background:var(--red)}
-.section-h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(32px,4vw,52px);color:#fff;margin-bottom:32px;line-height:1}
+/* WORKFLOW */
+.workflow-grid{
+  display:grid;grid-template-columns:repeat(auto-fit, minmax(240px, 1fr));
+  gap:1px;background:var(--border);margin-top:48px;
+}
+.wf-card{
+  background:var(--bg);padding:32px 28px;
+  transition:background 0.2s;
+}
+.wf-card:hover{background:var(--bg2)}
+.wf-num{
+  font-family:'DM Mono',monospace;font-size:11px;
+  color:var(--red);letter-spacing:1px;margin-bottom:12px;
+}
+.wf-title{font-weight:500;font-size:16px;margin-bottom:8px;letter-spacing:-0.3px}
+.wf-desc{font-size:13px;color:var(--text2);line-height:1.7}
 
-.workflow-steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:2px;background:var(--border);margin-bottom:40px}
-.wf-step{background:var(--bg2);padding:28px 24px;position:relative}
-.wf-step-num{font-family:'Bebas Neue',sans-serif;font-size:52px;color:#222;line-height:1;margin-bottom:12px}
-.wf-step-title{font-family:'Space Mono',monospace;font-size:10px;color:#e0e0e0;letter-spacing:2px;margin-bottom:8px;font-weight:700}
-.wf-step-desc{font-size:13px;color:var(--text2);line-height:1.75}
-.wf-step-note{margin-top:12px;padding:8px 12px;border-left:2px solid;font-family:'Space Mono',monospace;font-size:9px;line-height:1.9;letter-spacing:1px}
-.wf-arrow{position:absolute;right:-12px;top:50%;transform:translateY(-50%);color:#333;font-size:18px;z-index:2;display:none}
-@media(min-width:768px){.wf-arrow{display:block}}
+/* COMPILER BOX (Alert/Note Style) */
+.compiler-note{
+  margin-top:48px;padding:24px 28px;
+  background:var(--bg2);border:1px solid var(--border);
+  border-left:2px solid var(--yellow);
+  display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:24px;
+}
+.compiler-btn{
+  font-family:'DM Mono',monospace;font-size:11px;
+  padding:11px 28px;background:var(--text);color:var(--bg);
+  text-decoration:none;transition:all 0.15s;
+}
+.compiler-btn:hover{background:var(--red)}
 
-/* COMPILER BOX */
-.compiler-box{background:var(--bg);border:1px solid var(--border);border-left:3px solid var(--yellow);padding:28px 32px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap}
-.compiler-left{}
-.compiler-badge{font-family:'Space Mono',monospace;font-size:8px;letter-spacing:3px;color:#aa8800;margin-bottom:10px;display:flex;align-items:center;gap:8px}
-.compiler-badge::before{content:'';display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--yellow);box-shadow:0 0 6px var(--yellow);animation:pulse 2s infinite}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
-.compiler-title{font-family:'Bebas Neue',sans-serif;font-size:28px;color:#fff;margin-bottom:6px}
-.compiler-desc{font-size:13px;color:var(--text2);line-height:1.75;max-width:480px}
-.compiler-desc strong{color:#e0e0e0;font-weight:600}
-.compiler-url{font-family:'Space Mono',monospace;font-size:9px;color:#555;margin-top:8px;letter-spacing:1px}
-.compiler-btn{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:3px;padding:14px 28px;background:var(--yellow);color:#111;border:none;cursor:pointer;text-decoration:none;transition:all 0.2s;white-space:nowrap;font-weight:700;display:inline-block}
-.compiler-btn:hover{background:#e6b800;transform:translateY(-2px);box-shadow:0 8px 20px rgba(255,204,0,0.25)}
-
-.compiler-warning{margin-top:20px;padding:12px 16px;background:#1a1500;border:1px solid #3a3000;border-radius:2px;font-family:'Space Mono',monospace;font-size:9px;color:#886600;letter-spacing:1px;line-height:1.8;display:flex;gap:10px;align-items:flex-start}
-.compiler-warning-icon{flex-shrink:0;margin-top:1px}
-
-/* ── UPLOAD GUIDE ── */
-.upload-section{padding:64px 6%;background:var(--bg);border-bottom:1px solid var(--border)}
-.upload-steps{display:flex;flex-direction:column;gap:2px;max-width:680px;margin-top:28px}
-.upload-step{display:flex;gap:20px;align-items:flex-start;padding:20px 24px;background:var(--bg2);border:1px solid var(--border);transition:all 0.3s}
-.upload-step:hover{background:#202020;border-color:#3a3a3a}
-.upload-step-num{font-family:'Bebas Neue',sans-serif;font-size:40px;color:#2a2a2a;line-height:1;width:44px;flex-shrink:0;transition:color 0.3s}
-.upload-step:hover .upload-step-num{color:var(--red)}
-.upload-step-title{font-family:'Space Mono',monospace;font-size:10px;color:#e0e0e0;letter-spacing:2px;margin-bottom:6px;font-weight:700}
-.upload-step-desc{font-size:13px;color:var(--text2);line-height:1.75}
-.upload-step-code{margin-top:8px;padding:8px 12px;background:#111;border:1px solid #2a2a2a;font-family:'Space Mono',monospace;font-size:10px;color:#44ff88;letter-spacing:1px}
-
-/* ── LIBRARY SECTION ── */
-.library-section{padding:64px 6% 80px}
-
-/* CONTROLS */
-.controls{display:flex;gap:14px;align-items:center;flex-wrap:wrap;margin-bottom:24px}
-.search-wrap{position:relative;flex:1;min-width:200px;max-width:320px}
-.search-input{width:100%;background:#1c1c1c;border:1px solid var(--border);padding:10px 16px 10px 36px;font-family:'Space Mono',monospace;font-size:11px;color:var(--text);letter-spacing:1px;outline:none;transition:border-color 0.2s}
-.search-input::placeholder{color:#444}
-.search-input:focus{border-color:#444}
-.search-icon{position:absolute;left:11px;top:50%;transform:translateY(-50%);color:#444;font-size:13px;pointer-events:none}
+/* CONTROLS (Search & Filter) */
+.controls{
+  display:flex;gap:16px;align-items:center;flex-wrap:wrap;
+  margin-top:48px;margin-bottom:32px;
+}
+.search-input{
+  flex:1;min-width:240px;max-width:320px;
+  background:transparent;border:1px solid var(--border);
+  padding:10px 16px;font-family:'DM Mono',monospace;font-size:11px;
+  color:var(--text);outline:none;
+}
+.search-input:focus{border-color:var(--text)}
 .filter-group{display:flex;gap:6px;flex-wrap:wrap}
-.filter-btn{font-family:'Space Mono',monospace;font-size:8px;letter-spacing:2px;padding:8px 14px;background:transparent;border:1px solid #2a2a2a;color:#777;cursor:pointer;transition:all 0.2s;text-transform:uppercase}
-.filter-btn:hover{border-color:#555;color:#ccc}
-.filter-btn.active{background:var(--red);border-color:var(--red);color:#fff}
-.filter-btn[data-cat="synth"].active{background:#ff4444;border-color:#ff4444;color:#fff}
-.filter-btn[data-cat="drum"].active{background:#ffcc00;border-color:#ffcc00;color:#111}
-.filter-btn[data-cat="fx"].active{background:#44aaff;border-color:#44aaff;color:#fff}
-.filter-btn[data-cat="sequencer"].active{background:#44ff88;border-color:#44ff88;color:#111}
+.tag{
+  font-family:'DM Mono',monospace;font-size:9px;
+  letter-spacing:1px;padding:5px 12px;
+  border:1px solid var(--border2);color:var(--text3);
+  background:none;cursor:pointer;transition:all 0.15s;
+}
+.tag:hover,.tag.active{border-color:var(--text);color:var(--text)}
+.tag.active{background:var(--bg3)}
 
 /* PATCH GRID */
-.patch-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:2px;background:var(--border)}
-.patch-card{background:var(--bg2);border-top:2px solid;padding:26px 22px;transition:all 0.3s;position:relative}
-.patch-card:hover{background:#202020;transform:translateY(-2px);box-shadow:0 12px 32px rgba(0,0,0,0.4)}
-.patch-card-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px}
-.patch-cat-badge{font-family:'Space Mono',monospace;font-size:8px;letter-spacing:3px;padding:3px 9px;border-radius:2px;text-transform:uppercase}
-.diff-badge{font-family:'Space Mono',monospace;font-size:8px;letter-spacing:1px;padding:3px 8px;border-radius:2px}
-.diff-beginner{background:rgba(68,255,136,0.1);border:1px solid rgba(68,255,136,0.25);color:#44ff88}
-.diff-intermediate{background:rgba(255,204,0,0.1);border:1px solid rgba(255,204,0,0.25);color:#ffcc00}
-.diff-advanced{background:rgba(255,68,68,0.1);border:1px solid rgba(255,68,68,0.25);color:#ff4444}
-.cat-synth{background:rgba(255,68,68,0.1);border:1px solid rgba(255,68,68,0.25);color:#ff4444}
-.cat-drum{background:rgba(255,204,0,0.1);border:1px solid rgba(255,204,0,0.25);color:#ffcc00}
-.cat-fx{background:rgba(68,170,255,0.1);border:1px solid rgba(68,170,255,0.25);color:#44aaff}
-.cat-sequencer{background:rgba(68,255,136,0.1);border:1px solid rgba(68,255,136,0.25);color:#44ff88}
-.border-synth{border-top-color:#ff4444}
-.border-drum{border-top-color:#ffcc00}
-.border-fx{border-top-color:#44aaff}
-.border-sequencer{border-top-color:#44ff88}
-.patch-name{font-family:'Bebas Neue',sans-serif;font-size:26px;color:#fff;line-height:1;margin-bottom:8px}
-.patch-desc{font-size:13px;color:var(--text2);line-height:1.75;margin-bottom:16px}
-.patch-tags{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:18px}
-.patch-tag{font-family:'Space Mono',monospace;font-size:8px;letter-spacing:1px;padding:3px 7px;background:#1a1a1a;border:1px solid #2a2a2a;color:#777}
-.patch-footer{display:flex;justify-content:space-between;align-items:center;padding-top:14px;border-top:1px solid #272727}
-.patch-meta{font-family:'Space Mono',monospace;font-size:8px;color:#555;letter-spacing:1px;line-height:1.8}
-.download-btn{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:2px;padding:9px 18px;background:var(--red);color:#fff;border:none;cursor:pointer;transition:all 0.2s;text-decoration:none;display:inline-flex;align-items:center;gap:5px;white-space:nowrap}
-.download-btn:hover{background:#e02020;transform:translateY(-1px);box-shadow:0 6px 16px rgba(255,68,68,0.3)}
-.download-btn.done{background:#333;cursor:default;transform:none;box-shadow:none}
+.patch-grid{
+  display:grid;grid-template-columns:repeat(auto-fill, minmax(280px, 1fr));
+  gap:1px;background:var(--border);border-top:1px solid var(--border);border-bottom:1px solid var(--border);
+}
+.patch-card{
+  background:var(--bg);padding:24px;
+  display:flex;flex-direction:column;gap:14px;
+  transition:background 0.2s;
+}
+.patch-card:hover{background:var(--bg2)}
+.patch-header{display:flex;justify-content:space-between;align-items:center}
+.patch-cat{
+  font-family:'DM Mono',monospace;font-size:9px;
+  letter-spacing:1.5px;padding:3px 8px;border:1px solid;
+  text-transform:uppercase;
+}
+.cat-synth{color:var(--red);border-color:rgba(232,57,42,0.3)}
+.cat-drum{color:var(--yellow);border-color:rgba(240,165,0,0.3)}
+.cat-fx{color:var(--blue);border-color:rgba(26,85,204,0.3)}
 
-/* EMPTY STATE */
-.empty-state{text-align:center;padding:80px 24px;background:var(--bg2);border:1px solid var(--border)}
-.empty-icon{font-size:36px;margin-bottom:20px;opacity:0.25}
-.empty-title{font-family:'Bebas Neue',sans-serif;font-size:32px;color:#fff;margin-bottom:10px}
-.empty-desc{font-size:14px;color:var(--text3);line-height:1.75;max-width:400px;margin:0 auto}
+.patch-name{font-weight:500;font-size:18px;letter-spacing:-0.3px}
+.patch-desc{font-size:13px;color:var(--text2);line-height:1.65;flex:1}
+.download-btn{
+  font-family:'DM Mono',monospace;font-size:11px;
+  padding:8px 16px;border:1px solid var(--border2);
+  color:var(--text2);text-decoration:none;text-align:center;
+  transition:all 0.15s;
+}
+.download-btn:hover{border-color:var(--text);color:var(--text)}
+.download-btn.done{background:var(--green);color:white;border-color:var(--green)}
 
-/* SUBMIT */
-.submit-box{margin-top:48px;padding:28px 32px;background:var(--bg2);border:1px solid var(--border);border-left:3px solid var(--purple);display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap}
-.submit-title{font-family:'Space Mono',monospace;font-size:10px;color:var(--purple);letter-spacing:3px;margin-bottom:8px;font-weight:700}
-.submit-desc{font-size:14px;color:var(--text2);line-height:1.75}
-.submit-btn{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:3px;padding:12px 24px;background:transparent;border:1px solid var(--purple);color:var(--purple);cursor:pointer;text-decoration:none;transition:all 0.2s;white-space:nowrap;display:inline-block}
-.submit-btn:hover{background:var(--purple);color:#fff}
+@media(max-width:768px){.sec{padding:80px 5%}}
 </style>
 </head>
 <body>
 
-<!-- NAV -->
 <nav>
-  <a href="index.html" class="nav-logo">osc<span>i</span>mo</a>
-  <ul class="nav-links">
-    <li><a href="index.html#products" data-ko="제품" data-en="Products">제품</a></li>
-    <li><a href="index.html#how" data-ko="작동원리" data-en="How It Works">작동원리</a></li>
-    <li><a href="index.html#diy" data-ko="조립" data-en="DIY">조립</a></li>
-    <li><a href="patches.html" class="active" data-ko="패치 라이브러리" data-en="Patches">패치 라이브러리</a></li>
-  </ul>
-  <div class="nav-right">
-    <button class="lang-toggle" id="langBtn">EN</button>
-    <a href="https://smartstore.naver.com/techtreeshop" target="_blank" class="nav-cta" data-ko="구매하기 →" data-en="Buy Now →">구매하기 →</a>
+  <a href="index.html" class="nav-logo">oscimo <em>—</em></a>
+  <div class="nav-links">
+    <a href="index.html">HARDWARE</a>
+    <a href="patches.html" class="on">PATCHES</a>
+    <a href="#">GUIDE</a>
   </div>
+  <button class="lang-btn" id="langBtn">EN</button>
 </nav>
 
-<!-- PAGE HEADER -->
-<div class="page-header">
-  <div class="page-tag">PATCH LIBRARY</div>
-  <h1 class="page-h1">OSCIMO<br><span>PATCHES</span></h1>
-  <p class="page-desc" data-ko="plugdata로 설계한 패치를 .uf2 파일로 변환해 oscimo에 업로드하세요.<br><strong>모든 패치는 무료</strong>로 제공됩니다." data-en="Convert your plugdata patch to .uf2 and upload it to oscimo.<br><strong>All patches are free</strong> to download and use.">plugdata로 설계한 패치를 .uf2 파일로 변환해 oscimo에 업로드하세요.<br><strong>모든 패치는 무료</strong>로 제공됩니다.</p>
-</div>
+<section class="sec reveal">
+  <div class="sec-label" data-ko="패치 라이브러리" data-en="PATCH LIBRARY">PATCH LIBRARY</div>
+  <h1 class="sec-h" data-ko="당신의 사운드를 <strong>확장하세요</strong>" data-en="Expand your <strong>Soundscape</strong>">당신의 사운드를 <strong>확장하세요</strong></h1>
+  <p class="sec-body" data-ko="oscimo 디바이스에 바로 업로드하여 사용할 수 있는 검증된 패치들입니다. 각 패치를 커스텀하여 자신만의 사운드를 만들어보세요." 
+     data-en="Verified patches ready to upload to your oscimo device. Customize each patch to create your own unique sound.">
+    oscimo 디바이스에 바로 업로드하여 사용할 수 있는 검증된 패치들입니다. 각 패치를 커스텀하여 자신만의 사운드를 만들어보세요.
+  </p>
 
-<!-- WORKFLOW -->
-<div class="workflow-section">
-  <div class="section-tag" data-ko="HOW TO USE PATCHES" data-en="HOW TO USE PATCHES">HOW TO USE PATCHES</div>
-  <h2 class="section-h2" data-ko="패치 사용 방법" data-en="How to Use a Patch">패치 사용 방법</h2>
-
-  <div class="workflow-steps">
-    <div class="wf-step">
-      <div class="wf-step-num">01</div>
-      <div class="wf-step-title" data-ko="plugdata에서 패치 설계" data-en="DESIGN IN PLUGDATA">plugdata에서 패치 설계</div>
-      <p class="wf-step-desc" data-ko="plugdata(Pure Data)에서 신디사이저 구조를 설계합니다. 완성된 패치를 .pd 파일로 저장하세요." data-en="Design your synthesizer structure in plugdata (Pure Data). Save the completed patch as a .pd file.">plugdata(Pure Data)에서 신디사이저 구조를 설계합니다. 완성된 패치를 .pd 파일로 저장하세요.</p>
-      <div class="wf-step-note" style="border-color:#bb88ff;color:#cc99ff;background:#1e1a28" data-ko="저장 파일 형식: .pd" data-en="Save format: .pd">저장 파일 형식: .pd</div>
+  <div class="workflow-grid">
+    <div class="wf-card">
+      <div class="wf-num">01</div>
+      <div class="wf-title" data-ko="패치 선택" data-en="Choose Patch">패치 선택</div>
+      <div class="wf-desc" data-ko="아래 라이브러리에서 마음에 드는 사운드를 찾아 파일을 다운로드하세요." data-en="Find the sound you like and download the patch file.">아래 라이브러리에서 마음에 드는 사운드를 찾아 파일을 다운로드하세요.</div>
     </div>
-    <div class="wf-step">
-      <div class="wf-step-num">02</div>
-      <div class="wf-step-title" data-ko=".uf2 로 변환" data-en="CONVERT TO .uf2">.uf2 로 변환</div>
-      <p class="wf-step-desc" data-ko="아래 컴파일러 도구에 .pd 파일을 업로드하고 컴파일 버튼을 누르면 firmware.uf2 파일로 다운로드됩니다." data-en="Upload your .pd file to the compiler tool below, click compile, and download the firmware.uf2 file.">아래 컴파일러 도구에 .pd 파일을 업로드하고 컴파일 버튼을 누르면 firmware.uf2 파일로 다운로드됩니다.</p>
-      <div class="wf-step-note" style="border-color:#ffcc00;color:#ddaa00;background:#1a1600" data-ko="출력 파일: firmware.uf2" data-en="Output file: firmware.uf2">출력 파일: firmware.uf2</div>
+    <div class="wf-card">
+      <div class="wf-num">02</div>
+      <div class="wf-title" data-ko="컴파일러 접속" data-en="Open Compiler">컴파일러 접속</div>
+      <div class="wf-desc" data-ko="PlugData 웹 컴파일러를 통해 .pd 파일을 바이너리로 변환합니다." data-en="Convert .pd files to binary using the PlugData web compiler.">PlugData 웹 컴파일러를 통해 .pd 파일을 바이너리로 변환합니다.</div>
     </div>
-    <div class="wf-step">
-      <div class="wf-step-num">03</div>
-      <div class="wf-step-title" data-ko="oscimo에 업로드" data-en="UPLOAD TO oscimo">oscimo에 업로드</div>
-      <p class="wf-step-desc" data-ko="oscimo를 BOOTSEL 모드로 연결하면 USB 드라이브로 인식됩니다. firmware.uf2 파일을 드래그&드롭하면 자동으로 설치됩니다." data-en="Connect oscimo in BOOTSEL mode and it appears as a USB drive. Drag and drop firmware.uf2 to install automatically.">oscimo를 BOOTSEL 모드로 연결하면 USB 드라이브로 인식됩니다. firmware.uf2 파일을 드래그&드롭하면 자동으로 설치됩니다.</p>
-      <div class="wf-step-note" style="border-color:#44ff88;color:#66cc88;background:#181e1c" data-ko="드래그&드롭으로 즉시 설치" data-en="Drag & drop to install instantly">드래그&드롭으로 즉시 설치</div>
+    <div class="wf-card">
+      <div class="wf-num">03</div>
+      <div class="wf-title" data-ko="업로드" data-en="Upload">업로드</div>
+      <div class="wf-desc" data-ko="USB로 연결된 oscimo 디바이스에 변환된 파일을 복사하면 끝!" data-en="Copy the converted file to your oscimo device via USB.">USB로 연결된 oscimo 디바이스에 변환된 파일을 복사하면 끝!</div>
     </div>
   </div>
 
-  <!-- COMPILER BOX -->
-  <div class="compiler-box">
-    <div class="compiler-left">
-      <div class="compiler-badge" data-ko="임시 컴파일러 · 운영 중" data-en="TEMPORARY COMPILER · RUNNING">임시 컴파일러 · 운영 중</div>
-      <div class="compiler-title" data-ko="PD → UF2 컴파일러" data-en="PD → UF2 Compiler">PD → UF2 컴파일러</div>
-      <p class="compiler-desc" data-ko=".pd 파일을 업로드하고 <strong>Upload & Compile</strong> 버튼을 누르면 oscimo에 업로드 가능한 <strong>firmware.uf2</strong> 파일을 다운로드할 수 있습니다." data-en="Upload your .pd file and click <strong>Upload & Compile</strong> to download a <strong>firmware.uf2</strong> file ready for oscimo.">.pd 파일을 업로드하고 <strong>Upload & Compile</strong> 버튼을 누르면 oscimo에 업로드 가능한 <strong>firmware.uf2</strong> 파일을 다운로드할 수 있습니다.</p>
-      <div class="compiler-url">http://130.110.9.11:5000</div>
-    </div>
-    <a href="http://130.110.9.11:5000/" target="_blank" class="compiler-btn" data-ko="컴파일러 열기 →" data-en="Open Compiler →">컴파일러 열기 →</a>
-  </div>
-
-  <div class="compiler-warning">
-    <span class="compiler-warning-icon">⚠</span>
-    <span data-ko="현재 컴파일러는 임시 운영 중입니다. 추후 oscimo 전용 컴파일 툴로 교체될 예정입니다." data-en="The current compiler is temporarily hosted. It will be replaced with a dedicated oscimo compiler tool in the future.">현재 컴파일러는 임시 운영 중입니다. 추후 oscimo 전용 컴파일 툴로 교체될 예정입니다.</span>
-  </div>
-</div>
-
-<!-- UPLOAD GUIDE -->
-<div class="upload-section">
-  <div class="section-tag" data-ko="oscimo 업로드 가이드" data-en="UPLOAD GUIDE">oscimo 업로드 가이드</div>
-  <h2 class="section-h2" data-ko="oscimo에 패치 올리는 법" data-en="How to Upload to oscimo">oscimo에 패치 올리는 법</h2>
-  <div class="upload-steps">
-    <div class="upload-step">
-      <div class="upload-step-num">1</div>
-      <div>
-        <div class="upload-step-title" data-ko="BOOTSEL 모드로 연결" data-en="CONNECT IN BOOTSEL MODE">BOOTSEL 모드로 연결</div>
-        <p class="upload-step-desc" data-ko="oscimo의 BOOTSEL 버튼을 누른 상태에서 USB를 연결합니다. USB 드라이브(RPI-RP2)로 인식됩니다." data-en="Hold the BOOTSEL button on oscimo while connecting USB. It will appear as a USB drive (RPI-RP2).">oscimo의 BOOTSEL 버튼을 누른 상태에서 USB를 연결합니다. USB 드라이브(RPI-RP2)로 인식됩니다.</p>
-      </div>
-    </div>
-    <div class="upload-step">
-      <div class="upload-step-num">2</div>
-      <div>
-        <div class="upload-step-title" data-ko="UF2 파일 복사" data-en="COPY THE UF2 FILE">UF2 파일 복사</div>
-        <p class="upload-step-desc" data-ko="컴파일러에서 다운로드한 firmware.uf2 파일을 RPI-RP2 드라이브로 드래그&드롭합니다." data-en="Drag and drop the firmware.uf2 file downloaded from the compiler into the RPI-RP2 drive.">컴파일러에서 다운로드한 firmware.uf2 파일을 RPI-RP2 드라이브로 드래그&드롭합니다.</p>
-        <div class="upload-step-code">firmware.uf2 → RPI-RP2/</div>
-      </div>
-    </div>
-    <div class="upload-step">
-      <div class="upload-step-num">3</div>
-      <div>
-        <div class="upload-step-title" data-ko="자동 재시작" data-en="AUTO RESTART">자동 재시작</div>
-        <p class="upload-step-desc" data-ko="파일 복사가 완료되면 oscimo가 자동으로 재시작되며 새 패치가 바로 실행됩니다." data-en="Once the file is copied, oscimo automatically restarts and the new patch runs immediately.">파일 복사가 완료되면 oscimo가 자동으로 재시작되며 새 패치가 바로 실행됩니다.</p>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- LIBRARY -->
-<div class="library-section">
-  <div class="section-tag" data-ko="패치 다운로드" data-en="PATCH DOWNLOAD">패치 다운로드</div>
-  <h2 class="section-h2" data-ko="패치 라이브러리" data-en="Patch Library">패치 라이브러리</h2>
-
-  <div class="controls" id="controls" style="display:none">
-    <div class="search-wrap">
-      <span class="search-icon">⌕</span>
-      <input type="text" class="search-input" id="searchInput" placeholder="패치 검색...">
-    </div>
-    <div class="filter-group" id="filterGroup">
-      <button class="filter-btn active" data-cat="all" data-ko="전체" data-en="All">전체</button>
-      <button class="filter-btn" data-cat="synth" data-ko="신스" data-en="Synth">신스</button>
-      <button class="filter-btn" data-cat="drum" data-ko="드럼" data-en="Drum">드럼</button>
-      <button class="filter-btn" data-cat="fx" data-ko="FX" data-en="FX">FX</button>
-      <button class="filter-btn" data-cat="sequencer" data-ko="시퀀서" data-en="Sequencer">시퀀서</button>
-    </div>
-  </div>
-
-  <div class="patch-grid" id="patchGrid" style="display:none"></div>
-
-  <!-- EMPTY STATE (shown when no patches) -->
-  <div class="empty-state" id="emptyState">
-    <div class="empty-icon">♩</div>
-    <div class="empty-title" data-ko="패치 준비 중" data-en="Patches Coming Soon">패치 준비 중</div>
-    <p class="empty-desc" data-ko="공식 oscimo 패치를 준비하고 있습니다. 조금만 기다려주세요!" data-en="Official oscimo patches are being prepared. Stay tuned!">공식 oscimo 패치를 준비하고 있습니다. 조금만 기다려주세요!</p>
-  </div>
-
-  <!-- SUBMIT -->
-  <div class="submit-box">
+  <div class="compiler-note">
     <div>
-      <div class="submit-title" data-ko="나만의 패치를 공유하세요" data-en="Share Your Patch">나만의 패치를 공유하세요</div>
-      <p class="submit-desc" data-ko="직접 만든 oscimo 패치를 커뮤니티와 공유하고 싶다면 이메일로 보내주세요.<br>검토 후 라이브러리에 등록해드립니다." data-en="Want to share your own oscimo patch with the community?<br>Send it by email and we'll add it to the library after review.">직접 만든 oscimo 패치를 커뮤니티와 공유하고 싶다면 이메일로 보내주세요.<br>검토 후 라이브러리에 등록해드립니다.</p>
+      <div class="wf-title" style="margin-bottom:4px">Web Compiler</div>
+      <div class="wf-desc" data-ko="설치 없이 브라우저에서 바로 패치를 변환하세요." data-en="Convert patches directly in your browser without installation.">설치 없이 브라우저에서 바로 패치를 변환하세요.</div>
     </div>
-    <a href="https://docs.google.com/forms/d/e/1FAIpQLSdMgrVYbBNZ6tL9i4hA6EfoR-D6A_X9pl0XvdybNq-p7qKs2Q/viewform?usp=dialog" target="_blank" class="submit-btn" data-ko="패치 제출하기 →" data-en="Submit a Patch →">패치 제출하기 →</a>
+    <a href="https://plugdata.org/compiler.html" target="_blank" class="compiler-btn">OPEN COMPILER</a>
   </div>
-</div>
+</section>
+
+<section class="sec reveal" style="padding-top:0">
+  <div class="sec-label" data-ko="탐색" data-en="EXPLORE">EXPLORE</div>
+  
+  <div class="controls">
+    <input type="text" id="searchInput" class="search-input" placeholder="Search patches..." data-ko="패치 검색..." data-en="Search patches...">
+    <div class="filter-group" id="filterGroup">
+      <button class="tag active" data-cat="all">ALL</button>
+      <button class="tag" data-cat="synth">SYNTH</button>
+      <button class="tag" data-cat="drum">DRUM</button>
+      <button class="tag" data-cat="fx">FX</button>
+    </div>
+  </div>
+
+  <div class="patch-grid" id="patchGrid">
+    </div>
+</section>
 
 <script>
-let lang = 'ko';
 let patches = [];
 let activeFilter = 'all';
 let searchQuery = '';
+let lang = 'ko';
 
-const diffOrder = { beginner:0, intermediate:1, advanced:2 };
-const catLabel = {
-  ko: { synth:'신스', drum:'드럼', fx:'FX', sequencer:'시퀀서' },
-  en: { synth:'Synth', drum:'Drum', fx:'FX', sequencer:'Sequencer' }
-};
-const diffLabel = {
-  ko: { beginner:'입문', intermediate:'중급', advanced:'고급' },
-  en: { beginner:'Beginner', intermediate:'Intermediate', advanced:'Advanced' }
-};
+// Reveal 애니메이션 (index.html 로직 적용)
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('on'); });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-/* FETCH */
-fetch('patches.json')
-  .then(r => r.json())
-  .then(data => { patches = data; init(); })
-  .catch(() => { patches = []; init(); });
-
-function init() {
-  if (patches.length > 0) {
-    document.getElementById('controls').style.display = 'flex';
-    document.getElementById('patchGrid').style.display = 'grid';
-    document.getElementById('emptyState').style.display = 'none';
+async function load() {
+  try {
+    const res = await fetch('patches.json');
+    patches = await res.json();
     render();
-  }
-  /* if empty, emptyState already visible by default */
+  } catch(e) { console.error("JSON 로드 오류:", e); }
 }
 
 function render() {
-  let list = [...patches];
-  if (activeFilter !== 'all') list = list.filter(p => p.category === activeFilter);
-  if (searchQuery) {
-    const q = searchQuery.toLowerCase();
-    list = list.filter(p =>
-      p.name.toLowerCase().includes(q) ||
-      (p.description||'').toLowerCase().includes(q) ||
-      (p.description_en||'').toLowerCase().includes(q) ||
-      (p.tags||[]).some(t => t.toLowerCase().includes(q))
-    );
-  }
-
   const grid = document.getElementById('patchGrid');
-  if (list.length === 0) {
-    grid.innerHTML = `<div style="grid-column:1/-1;padding:48px;text-align:center;font-family:'Space Mono',monospace;font-size:10px;color:#444;letter-spacing:3px">${lang==='ko'?'검색 결과 없음':'No results found'}</div>`;
-    return;
-  }
+  const filtered = patches.filter(p => {
+    const matchesFilter = activeFilter === 'all' || p.category === activeFilter;
+    const matchesSearch = p.name.toLowerCase().includes(searchQuery.toLowerCase()) || 
+                          p.desc[lang].toLowerCase().includes(searchQuery.toLowerCase());
+    return matchesFilter && matchesSearch;
+  });
 
-  grid.innerHTML = list.map(p => {
-    const desc = lang==='ko' ? p.description : (p.description_en||p.description);
-    const cat = catLabel[lang][p.category] || p.category;
-    const diff = diffLabel[lang][p.difficulty] || p.difficulty;
-    const tags = (p.tags||[]).map(t=>`<span class="patch-tag">${t}</span>`).join('');
-    const dlLabel = lang==='ko' ? '↓ 다운로드' : '↓ Download';
-    return `
-    <div class="patch-card border-${p.category}">
-      <div class="patch-card-header">
-        <span class="patch-cat-badge cat-${p.category}">${cat}</span>
-        <span class="diff-badge diff-${p.difficulty}">${diff}</span>
+  grid.innerHTML = filtered.map(p => `
+    <div class="patch-card">
+      <div class="patch-header">
+        <span class="patch-cat cat-${p.category}">${p.category}</span>
+        <span style="font-family:'DM Mono'; font-size:9px; color:var(--text3)">${p.difficulty || ''}</span>
       </div>
-      <div class="patch-name">${p.name}</div>
-      <p class="patch-desc">${desc}</p>
-      <div class="patch-tags">${tags}</div>
-      <div class="patch-footer">
-        <div class="patch-meta">v${p.version||'1.0'} · ${p.author||'oscimo'}<br>${p.date||''}</div>
-        <a href="${p.file}" download class="download-btn" onclick="onDownload(this)">${dlLabel}</a>
-      </div>
-    </div>`;
-  }).join('');
+      <h3 class="patch-name">${p.name}</h3>
+      <p class="patch-desc">${p.desc[lang]}</p>
+      <a href="${p.file}" download class="download-btn" onclick="onDownload(this)">
+        ${lang==='ko' ? '패치 다운로드' : 'DOWNLOAD'}
+      </a>
+    </div>
+  `).join('');
 }
 
 function onDownload(btn) {
   const orig = btn.innerHTML;
-  btn.innerHTML = '✓ ' + (lang==='ko'?'완료':'Done');
+  btn.innerHTML = lang==='ko' ? '완료' : 'DONE';
   btn.classList.add('done');
   setTimeout(() => { btn.innerHTML = orig; btn.classList.remove('done'); }, 2000);
 }
 
-/* FILTER */
+// 필터링 및 검색 이벤트
 document.getElementById('filterGroup').addEventListener('click', e => {
-  const btn = e.target.closest('.filter-btn');
-  if (!btn) return;
-  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
-  activeFilter = btn.dataset.cat;
+  if (!e.target.classList.contains('tag')) return;
+  document.querySelectorAll('.tag').forEach(b => b.classList.remove('active'));
+  e.target.classList.add('active');
+  activeFilter = e.target.dataset.cat;
   render();
 });
 
-/* SEARCH */
 document.getElementById('searchInput').addEventListener('input', e => {
-  searchQuery = e.target.value.trim();
+  searchQuery = e.target.value;
   render();
 });
 
-/* LANG */
+// 언어 전환 (index.html 스타일)
 const langBtn = document.getElementById('langBtn');
-function applyLang(l) {
-  lang = l;
-  langBtn.textContent = l==='ko' ? 'EN' : 'KO';
-  document.documentElement.lang = l==='ko' ? 'ko' : 'en';
-  document.querySelectorAll('[data-'+l+']').forEach(el => {
-    const val = el.getAttribute('data-'+l);
-    if (!val) return;
-    if (el.tagName==='INPUT') el.placeholder = val;
-    else el.innerHTML = val;
+langBtn.addEventListener('click', () => {
+  lang = lang === 'ko' ? 'en' : 'ko';
+  langBtn.textContent = lang === 'ko' ? 'EN' : 'KO';
+  document.querySelectorAll('[data-ko]').forEach(el => {
+    if(el.tagName === 'INPUT') el.placeholder = el.getAttribute('data-'+lang);
+    else el.innerHTML = el.getAttribute('data-'+lang);
   });
-  document.getElementById('searchInput').placeholder = l==='ko' ? '패치 검색...' : 'Search patches...';
-  if (patches.length > 0) render();
-}
-langBtn.addEventListener('click', () => applyLang(lang==='ko'?'en':'ko'));
+  render();
+});
+
+load();
 </script>
+
 </body>
 </html>
